@@ -1,0 +1,63 @@
+/*Login form*/
+
+
+nav.navbar:hover
+{
+	/*box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
+	
+}
+
+
+
+
+.vertical
+{
+    padding-top:150px;
+    padding-bottom: 150px;
+}
+
+
+
+	
+
+
+
+.breadcrumb{
+	background-color: #87ceeb;
+	padding: 5px 0;
+	/* color:#fff; */
+	font-size: 11px !important;
+}
+.breadcrumb .container .row {
+    margin: 0;
+	padding:0;
+}
+.breadcrumb .container .row .col-md-12 { 
+	padding:0;
+}
+.breadcrumb li{
+	margin:0;
+	display:inline-block;
+	font-size: 15px;
+	color: #f1f6ff;
+}
+.breadcrumb p > i{
+	margin-right:5px;
+	color: #fdd428;
+}
+.breadcrumb p:last-child{
+	text-align:right;
+} 
+
+.panel-heading
+{
+	
+	background-color: #1891ec;
+	color:#fff;
+}
+
+thead tr
+{
+	 background-color: midnightblue;
+	 color:#fff;
+}
