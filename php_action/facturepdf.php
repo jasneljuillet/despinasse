@@ -104,7 +104,22 @@ if ($result->num_rows > 0) {
     padding: 5px;
     text-align: left;
   }
-
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+ }
+ .footer2 {
+  position: fixed;
+  left: 0;
+  bottom: 30;
+  width: 100%;
+  color: black;
+  text-align: left;
+}
   </style>
   </head>
 
@@ -221,6 +236,27 @@ $html.=
 <strong>NB</strong> 
 jksadddddddddddsaaaaaaaaaaaaaskjdasssssssssss 
 </p>
+
+<p>
+<strong>Nom Dossier: </strong>'.$nom.'<br>
+<strong>Type Dossier: </strong>'.$typeDossier.'<br>
+<strong>Poid Collis: </strong>'.$poidsCollis.' (g)<br>
+<strong>Description Collis: </strong>'.$descriptionCollis.'<br>
+</p>
+
+
+<div class="footer">
+  <p>
+<img src="../images/entete1.png" />
+</p>
+
+<p>
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+  Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
+  when an unknown printer took a galley
+  </p>
+</div>
+
 </body>
   ';
   $mpdf->WriteHTML($html);
