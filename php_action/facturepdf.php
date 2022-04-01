@@ -73,6 +73,15 @@ if ($result->num_rows > 0) {
 
  $mg = mergeArrays($serviceName, $quantite, $prix);
 
+ $balance = 0;
+ $balance = number_format($balance);
+
+ $sumTotal = 0;
+ for($z = 0; $z < count($mg); $z++) {
+  $sumTotal = $sumTotal + ($quantite[$z] * $prix[$z]);
+ };
+
+ $sumTotal = number_format($sumTotal);
 ?> 
 
 <?php 
@@ -127,14 +136,40 @@ if ($result->num_rows > 0) {
   Tel: (509) 3611-4522 / 3389-5169<br>
   Email: despinasse@gmail.com / desinnasse@gmail.com
 </p>
-  <table style="width:46.5%">
-  <tr>
+
+<div style="width: 100%; text-align: center;">
+  
+<div align="left" style="width: 50%;float: left;">
+<table style="width: 100%;">
+<tr>
     <th style="text-align:center; background-color: gray;">Client</th>
   </tr>
   <tr>
     <td>'.$nomClient.'<br>'.$adresse.'.<br>'.$phone.'</td>
   </tr>
 </table>
+
+</div>
+
+<div align="left" style="width: 41.5%;  float: right; margin-top: 20px;">
+<table style="width: 100%; margin-top: -7%; ">
+<tr style="background-color: gray;">
+<th style="text-align:center;">Reference</th>
+<th style="text-align:center;">Transport</th>
+</tr>
+<tr>
+<td>Import<br>Personnal</td>
+<td>Maritime<br>Aerienne<br>Tairrain</td>
+</tr>
+
+<tr>
+
+</tr>
+</table>
+</div>
+</div>
+
+
 
 <br>
 
@@ -159,10 +194,35 @@ for ($i = 0; $i < count($mg); $i++) {
 }
 $html.=
 '
+<tfoot>
+<tr>
+<th>
+</th><th style="background-color: gray;" colspan="2">SubTOTAL</th>
+<td>'.$sumTotal.'</td>
+<td style="text-align:center;">USD</td>
+</tr>
+
+<tr>
+<th>
+</th><th colspan="2">BALANCE</th>
+<td>'.$balance.'</td>
+<td style="text-align:center;">USD</td>
+</tr>
+<tr>
+<th>
+</th><th colspan="2">TOTAL</th>
+<td>'.$sumTotal.'</td>
+<td style="text-align:center;">USD</td>
+</tr>
+</tfoot>
 </table>
+<br>
+<p>
+<strong>NB</strong> 
+jksadddddddddddsaaaaaaaaaaaaaskjdasssssssssss 
+</p>
 </body>
   ';
   $mpdf->WriteHTML($html);
-  //echo $quantite[0] * $prix[0];
   $mpdf->output();
 ?>
