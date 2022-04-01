@@ -237,7 +237,7 @@ $html.=
 jksadddddddddddsaaaaaaaaaaaaaskjdasssssssssss 
 </p>
 
-<p>
+<p style="margin-top: 18%;">
 <strong>Nom Dossier: </strong>'.$nom.'<br>
 <strong>Type Dossier: </strong>'.$typeDossier.'<br>
 <strong>Poid Collis: </strong>'.$poidsCollis.' (g)<br>
