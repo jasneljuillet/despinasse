@@ -11,8 +11,8 @@
 		$descripCollis =  $_POST['descripCollis'];
 		$poids =  $_POST['poids'];
 		$bLading =  $_POST['bLading'];
-		
-		$sql ="INSERT INTO dossier (Nom,TypeDossier,Date_creation,Destinataire,Description_collis,Poids_collis,Bill_Lading) VALUES ('$nameFolder','$folderType','$creationDate','$destinataire','$descripCollis','$poids','$bLading')";
+		$client = $_POST['clientDossier'];
+		$sql ="INSERT INTO dossier (Nom,TypeDossier,Date_creation,Destinataire,Description_collis,Poids_collis,Bill_Lading, clientId) VALUES ('$nameFolder','$folderType','$creationDate','$destinataire','$descripCollis','$poids','$bLading', '$client')";
 	}
 	if($connect->query($sql)==TRUE)
 	{

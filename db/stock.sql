@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 30, 2022 at 09:12 PM
+-- Generation Time: Apr 01, 2022 at 07:48 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.0
 
@@ -302,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `service` (
   PRIMARY KEY (`id`),
   KEY `FK_clint` (`client`),
   KEY `FK_Dossier` (`dossier`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=930 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service`
@@ -311,7 +311,11 @@ CREATE TABLE IF NOT EXISTS `service` (
 INSERT INTO `service` (`id`, `nom`, `prix`, `quantite`, `client`, `dossier`) VALUES
 (1, 'Shipping', 100, 6, 719, 929),
 (2, 'Tranport', 50, 3, 719, 928),
-(3, 'Tranport', 50, 5, 719, 907);
+(3, 'Tranport', 50, 5, 719, 907),
+(4, 'Tranport', 50, 10, 719, 907),
+(5, 'Shipping', 100, 3, 719, 907),
+(928, 'Billet Avion', 250, 3, 719, 928),
+(929, 'Visa Saint Domingue', 400, 1, 719, 929);
 
 -- --------------------------------------------------------
 

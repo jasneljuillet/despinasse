@@ -199,10 +199,12 @@ if ($result->num_rows > 0) {
 </tr>
 <thead>
 ';
-for ($i = 0; $i < count($mg); $i++) {
+echo count($mg);
+var_dump($mg);
+for ($i = 1; $i <= count($mg); $i++) {
   $html .= '<tr>';
-  for($j = 0; $j < count($mg); $j++) {
-      $html .='<td>'.$mg[$i][$j].'</td>';
+  for($j = 1; $j <= count($mg); $j++) {  
+       $html .='<td>'.$mg[$i].'</td>';
   }
  
   $html .= '</tr><td>'.$quantite[$i] * $prix[$i].'</td><td style="text-align:center;">USD</td>';
@@ -237,12 +239,7 @@ $html.=
 jksadddddddddddsaaaaaaaaaaaaaskjdasssssssssss 
 </p>
 
-<p style="margin-top: 18%;">
-<strong>Nom Dossier: </strong>'.$nom.'<br>
-<strong>Type Dossier: </strong>'.$typeDossier.'<br>
-<strong>Poid Collis: </strong>'.$poidsCollis.' (g)<br>
-<strong>Description Collis: </strong>'.$descriptionCollis.'<br>
-</p>
+
 
 
 <div class="footer">
@@ -259,6 +256,7 @@ jksadddddddddddsaaaaaaaaaaaaaskjdasssssssssss
 
 </body>
   ';
+
   $mpdf->WriteHTML($html);
-  $mpdf->output();
+  //$mpdf->output();
 ?>

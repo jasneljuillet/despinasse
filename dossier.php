@@ -1,4 +1,7 @@
-<?php require_once ('includes/header.php');?>
+<?php require_once ('includes/header.php');
+ $sqlClient = "SELECT * FROM client";
+ $requete = $connect->query($sqlClient);
+?>
 
 
         <div class="row">
@@ -107,7 +110,23 @@
 											</div>
 											
 										  
-							
+											<label for="folderType" class="col-sm-3 control-label">Client</label>
+												<div class="col-sm-9">
+												  <select class="form-control" id="folderType" name="clientDossier">
+												  
+													<option value="">----Selectionner un Client----</option>
+													<?php
+													
+													if ($requete->num_rows > 0) {
+     
+														while($row = $requete->fetch_assoc()) {
+															echo '<option value="'.$row['numClient'].'">'.$row['nomClient'].'</option>';
+														}
+													  }
+													
+													?>
+												  </select>
+												</div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
