@@ -31,7 +31,7 @@ $requeteT = $connect->query($sqlT);
 												 <i class="glyphicon glyphicon-plus-sign"></i>Selectionner client</button>
                                            </div><!-- end of div action-->
 
-                                           <table class="table table-bordered table-striped" id="manageClientTable">
+                                           <!-- <table class="table table-bordered table-striped" id="manageClientTable">
                                                  <thead>
                                                      <tr>
 															<th> # </th>
@@ -40,7 +40,7 @@ $requeteT = $connect->query($sqlT);
 															<th>vendre</th>               
                                                         </tr>
                                                  </thead>
-                                           </table>
+                                           </table> -->
 
                                 </div>
                         </div>
@@ -53,46 +53,46 @@ $requeteT = $connect->query($sqlT);
 
         <div class="row">
 
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                      <ol class="breadcrumb">
                          <li><a href="dashboard.php">Accueil</a></li>
                           <li class="active">Dossier</li>
-                    </ol>
+                    </ol> -->
 
-                        <div class="panel panel-default">
-                                 <div class="panel-heading"> <i class=" glyphicon glyphicon-edit"></i>Gestion des dossiers </div>
+                        <!-- <div class="panel panel-default"> -->
+                                 <!-- <div class="panel-heading"> <i class=" glyphicon glyphicon-edit"></i>Gestion des dossiers </div>
                                  <div class="panel-body">
-                                          <div class="remove-messages"> </div>
+                                          <div class="remove-messages"> </div> -->
                                           <?php 
-                                          	if($requeteT) {
-												if($requeteT->num_rows > 0){
-													foreach($requeteT as $dataT){
-														$valueT += $dataT['price'];
-													}
-													echo '<strong>Montant Total: '.$valueT.'$</strong>';
-												} else {
-													echo "Error in ".$sqlT."<br>".$db->error;
-												}
-											  }
+                                          	// if($requeteT) {
+											// 	if($requeteT->num_rows > 0){
+											// 		foreach($requeteT as $dataT){
+											// 			$valueT += $dataT['price'];
+											// 		}
+											// 		echo '<strong>Montant Total: '.$valueT.'$</strong>';
+											// 	} else {
+											// 		echo "Error in ".$sqlT."<br>".$db->error;
+											// 	}
+											//   }
                                           ?>
                                           <!--<div class="div-action pull pull-right" style="padding-bottom:20px;">
                                                 <button class="btn btn-default" data-toggle="modal" data-target="#addFolderModal">
 												 <i class="glyphicon glyphicon-plus-sign"></i>Ajouter un dossier</button>
                                            </div> end of div action-->
 
-                                           <table class="table table-bordered table-striped" id="manageFactureTable">
+                                           <!-- <table class="table table-bordered table-striped" id="manageFactureTable">
                                                  <thead>
                                                      <tr>
 															<th> # </th>
-                                                            <!--<th>Date de vente</th>-->
+                                                            <th>Date de vente</th>
                                                             <th>Client</th>
 															
 															<th>Services</th>
-                                                            <!--<th>Description</th>-->
+                                                            <th>Description</th>-->
                                                             <!--<th>Total</th>-->
-                                                            <th>Price</th>
+                                                            <!-- <th>Price</th> -->
                                                             <!--<th>Total Price</th>-->
-                                                            <th>Action</th>
+                                                            <!-- <th>Action</th> -->
 															
                                                             
                                                         </tr>
@@ -101,15 +101,15 @@ $requeteT = $connect->query($sqlT);
 
                                 </div>
                         </div>
-                </div> <!-- end of col-md-12-->
+                </div>
 
-        </div> <!-- end of row -->
+        </div> 
 
         <?php if($requeteT) { if($requeteT->num_rows >0){?>
-        <div class="div-action pull pull-right" style="padding-bottom:20px;">
+        <!-- <div class="div-action pull pull-right" style="padding-bottom:20px;">
             <button class="btn btn-default" data-toggle="modal" data-target="#addPayModal">
 				<i class="glyphicon glyphicon-plus-sign"></i>Ajouter Paiement</button>
-        </div><!-- end of div action-->
+        </div> -->
     	<?php } } else { echo "Error in ".$sqlT."<br>".$connect->error; } ?>
 
 

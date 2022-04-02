@@ -28,9 +28,9 @@ $requeteT = $connect->query($sqlT);
 
                                           <div class="div-action pull pull-right" style="padding-bottom:20px;">
                                                 <button class="btn btn-default" data-toggle="modal" data-target="#addFolderModal">
-												 <i class="glyphicon glyphicon-plus-sign"></i>Selectionner client</button>
+												 <i class="glyphicon glyphicon-plus-sign"></i>Selectionner Dossier</button>
                                            </div><!-- end of div action-->
-
+<!-- 
                                            <table class="table table-bordered table-striped" id="manageClientTable">
                                                  <thead>
                                                      <tr>
@@ -40,7 +40,7 @@ $requeteT = $connect->query($sqlT);
 															<th>vendre</th>               
                                                         </tr>
                                                  </thead>
-                                           </table>
+                                           </table> -->
 
                                 </div>
                         </div>
