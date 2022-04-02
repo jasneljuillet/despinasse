@@ -200,11 +200,13 @@ if ($result->num_rows > 0) {
 <thead>
 ';
 echo count($mg);
-var_dump($mg);
-for ($i = 1; $i <= count($mg); $i++) {
+
+for ($i = 0; $i < count($mg); $i++) {
   $html .= '<tr>';
-  for($j = 1; $j <= count($mg); $j++) {  
-       $html .='<td>'.$mg[$i].'</td>';
+  for($j = 0; $j < count($mg); $j++) { 
+    if(isset($mg[$i][$j])) {
+      $html .='<td>'.$mg[$i][$j].'</td>';
+    } 
   }
  
   $html .= '</tr><td>'.$quantite[$i] * $prix[$i].'</td><td style="text-align:center;">USD</td>';
@@ -258,5 +260,5 @@ jksadddddddddddsaaaaaaaaaaaaaskjdasssssssssss
   ';
 
   $mpdf->WriteHTML($html);
-  //$mpdf->output();
+  $mpdf->output();
 ?>
