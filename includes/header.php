@@ -56,7 +56,7 @@
 											
 											
 												  <ul class="nav navbar-nav navbar-right" id="navSetting">
-                          <li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>Dashboard </a></li>
+                          <li id="navDashboard"><a href="dashboard.php"><i class="glyphicon glyphicon-list-alt"></i>Dashboard </a></li>
 						  <li id="navClient"><a href="client.php"><i class="glyphicon glyphicon-user"></i>Client </a></li>
 							<li id="navDossier"><a href="dossier.php"><i class="glyphicon glyphicon-folder-open"></i>Dossier </a></li>
 						<li id="navCategories"><a href="categories.php"><i class="glyphicon glyphicon-shopping-cart"></i>Facturation</a></li>
