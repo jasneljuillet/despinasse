@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 01, 2022 at 07:48 PM
+-- Generation Time: Apr 03, 2022 at 06:51 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.0
 
@@ -90,14 +90,30 @@ CREATE TABLE IF NOT EXISTS `client` (
   `adresse` varchar(255) NOT NULL,
   `phone` varchar(100) NOT NULL,
   PRIMARY KEY (`numClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=720 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=736 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `client`
 --
 
 INSERT INTO `client` (`numClient`, `nomClient`, `adresse`, `phone`) VALUES
-(719, 'BEAUDYNE Logistics', 'Nazon rue Celime 3', '2765443');
+(719, 'BEAUDYNE Logistics', 'Nazon rue Celime 3', '2765443'),
+(720, 'Despinasse', '12345', ''),
+(721, 'Despinasse', '12345', ''),
+(722, 'Despinasse', '12345', ''),
+(723, 'Despinasse', '12345', ''),
+(724, 'Despinasse', '12345', ''),
+(725, 'Despinasse', '12345', ''),
+(726, 'Despinasse', '12345', ''),
+(727, 'Despinasse', '12345', ''),
+(728, 'Despinasse', '12345', ''),
+(729, 'Despinasse', '12345', ''),
+(730, 'Despinasse', '12345', ''),
+(731, 'Despinasse', '12345', ''),
+(732, 'Despinasse', '12345', ''),
+(733, 'juillet', '12345', ''),
+(734, 'juillet', '12345', ''),
+(735, 'etienne', 'etienne@gmail.com', '44901752');
 
 -- --------------------------------------------------------
 
@@ -147,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `dossier` (
   `clientId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Num_Dossier`),
   KEY `FK_Client` (`clientId`)
-) ENGINE=InnoDB AUTO_INCREMENT=933 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=936 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dossier`
@@ -302,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `service` (
   PRIMARY KEY (`id`),
   KEY `FK_clint` (`client`),
   KEY `FK_Dossier` (`dossier`)
-) ENGINE=InnoDB AUTO_INCREMENT=930 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=932 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service`
@@ -315,7 +331,9 @@ INSERT INTO `service` (`id`, `nom`, `prix`, `quantite`, `client`, `dossier`) VAL
 (4, 'Tranport', 50, 10, 719, 907),
 (5, 'Shipping', 100, 3, 719, 907),
 (928, 'Billet Avion', 250, 3, 719, 928),
-(929, 'Visa Saint Domingue', 400, 1, 719, 929);
+(929, 'Visa Saint Domingue', 400, 1, 719, 929),
+(930, 'Shipping', 100, 2, 719, 907),
+(931, 'Tranport', 50, 25, 719, 907);
 
 -- --------------------------------------------------------
 
@@ -352,24 +370,20 @@ INSERT INTO `tempcart` (`Id`, `client`, `product`, `price`, `isactive`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `email`) VALUES
-(5, 'admin', '21232f297a57a5a743894a0e4a801fc3', ''),
-(6, 'kikilove', '8942d705c0ad0e2963b22e5c64a56346', ''),
-(7, 'kikilife', '14532cca6da66eb08cd41a9c059467e0', ''),
-(5, 'admin', '21232f297a57a5a743894a0e4a801fc3', ''),
-(6, 'kikilove', '8942d705c0ad0e2963b22e5c64a56346', ''),
-(7, 'kikilife', '14532cca6da66eb08cd41a9c059467e0', ''),
-(9, 'jasnel', '827ccb0eea8a706c4c34a16891f84e7b', 'jasnel@gmail.com');
+(2, 'jasnel', '827ccb0eea8a706c4c34a16891f84e7b', ''),
+(5, 'Despinas', '827ccb0eea8a706c4c34a16891f84e7b', '');
 
 --
 -- Constraints for dumped tables

@@ -85,8 +85,10 @@ if ($result->num_rows > 0) {
 ?> 
 
 <?php 
-  require_once('../vendor/autoload.php');
 
+  require_once('../vendor/autoload.php');
+  
+  // ['debug' => true]
   $mpdf = new \Mpdf\Mpdf();
 
   $html = '
@@ -120,6 +122,9 @@ if ($result->num_rows > 0) {
   color: black;
   text-align: left;
 }
+div.c {
+  text-align: right;
+} 
   </style>
   </head>
 
@@ -148,8 +153,8 @@ if ($result->num_rows > 0) {
 
 <p>
   23 Ave Martin Luther King Mimine, Port-au-Prince Haiti<br>
-  Tel: (509) 3611-4522 / 3389-5169<br>
-  Email: despinasse@gmail.com / desinnasse@gmail.com
+  Tel: (509) 3611-4122 / 3389-5169<br>
+  Email: beaudynelogistics1@outlook.com / beauboeufwitchill@yahoo.fr
 </p>
 
 <div style="width: 100%; text-align: center;">
@@ -199,12 +204,12 @@ if ($result->num_rows > 0) {
 </tr>
 <thead>
 ';
-echo count($mg);
-
 for ($i = 0; $i < count($mg); $i++) {
+  
   $html .= '<tr>';
-  for($j = 0; $j < count($mg); $j++) { 
+  for($j = 0; $j <= count($mg[$i]); $j++) { 
     if(isset($mg[$i][$j])) {
+      // echo $mg[$i][$j]."</br>";
       $html .='<td>'.$mg[$i][$j].'</td>';
     } 
   }
@@ -238,21 +243,27 @@ $html.=
 <br>
 <p>
 <strong>NB</strong> 
-jksadddddddddddsaaaaaaaaaaaaaskjdasssssssssss 
+Ce tarif ne tient pas compte des produits p&eacute;rissables et dangereux.Il peut-&ecirc; modifi&eacute; si le
+volume varie. 
+</p>
+<p>
+<strong>Account #: </strong>107-1022-1689054<br>
+<strong>Swift Code: </strong>UBNKHTPP<br>
+<strong>Bank Name: </strong>Unibank<br>
 </p>
 
-
-
+<div class="c">
+<p>
+_________________________________________<br>
+<p style="text-align: right; margin-right:68px;">Signature autoris&eacute;e</p>
+</p>
+</div>
 
 <div class="footer">
-  <p>
-<img src="../images/entete1.png" />
-</p>
-
 <p>
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-  Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
-  when an unknown printer took a galley
+ Beaudyne logistics d&eacute;cline toutes responsabilit&eacute;s en rapport &agrave; la nature des objets 
+ comportant votre colis.<br>
+ <strong><i> Votre colis, votre destination. Notre expertise,notre garantie!!!</i></strong>
   </p>
 </div>
 
@@ -260,5 +271,5 @@ jksadddddddddddsaaaaaaaaaaaaaskjdasssssssssss
   ';
 
   $mpdf->WriteHTML($html);
-  $mpdf->output();
+  $mpdf->Output();
 ?>

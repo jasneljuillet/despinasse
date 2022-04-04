@@ -13,7 +13,7 @@
                     </ol>
 
                         <div class="panel panel">
-                                 <div class="panel-heading"> <i class=" glyphicon glyphicon-edit"></i>Gestion des dossiers </div>
+                                 <div class="panel-heading"> <i class=" glyphicon glyphicon-edit"></i> Gestion des dossiers </div>
                                  <div class="panel-body">
                                           <div class="remove-messages"> </div>
 

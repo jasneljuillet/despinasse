@@ -38,7 +38,7 @@
 						$user_id = $value['user_id'];
 						// set session
 						$_SESSION['userId']= $user_id;
-						header('location:http://127.0.0.1/systeme_beaudyne/dashboard.php');
+						header('location:http:127.0.0.1/systeme_beaudyne/dashboard.php');
 					}
 					else
 					{

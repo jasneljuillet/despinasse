@@ -8,7 +8,7 @@
 				  <li class="active">Client</li>
 			</ol>
 			<div class="panel">
-			  <div class="panel-heading"><i class="glyphicon glyphicon-edit"></i>G&eacute;rer les Utilisateurs</div>
+			  <div class="panel-heading"><i class="glyphicon glyphicon-edit"></i> G&eacute;rer les Utilisateurs</div>
 			  <div class="panel-body">
 			    <div class="remove-msg-client"></div>
 
