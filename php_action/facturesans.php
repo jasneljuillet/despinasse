@@ -4,12 +4,12 @@
 require('core.php');
 
 
-$client = $_POST['clientName'];
+$client = $_GET['id'];
 $adresse = "";
 $nomClient = "";
 $phone = "";
 $clientId = "";
-$numDossier = "";
+$numService = "";
 $nom = "";
 $typeDossier = "";
 $dataCreation = "";
@@ -23,7 +23,7 @@ $prix = [];
 $quantite = [];
 $serviceId = "";
 $serviceName = [];
-$sql = "SELECT * FROM dossier INNER JOIN client on dossier.clientId = client.numClient INNER JOIN service on dossier.num_Dossier = service.dossier where dossier.nom = '$client' ";
+$sql = "SELECT * FROM service INNER JOIN client on service.client = client.numClient where service.client = '$client' ";
 
 $result = $connect->query($sql);
 
@@ -31,23 +31,27 @@ if ($result->num_rows > 0) {
    // output data of each row
    while($row = $result->fetch_assoc()) {
        $nomClient = $row['nomClient'];
+        $numService = $row['id'];
+        $dataCreation = date("Y/m/d");
+        $serviceName[] = $row['nom'];
+        $quantite[] = $row['quantite'];
+        $prix[] = $row['prix'];
        $adresse = $row['adresse'];
        $phone = $row['phone'];
-       $clientId = $row['numClient'];
-       $nom = $row['Nom'];
-       $numDossier = $row['Num_Dossier'];
-       $dataCreation = $row['Date_creation'];
-       $typeDossier = $row['TypeDossier'];
-       $destinataire = $row['Destinataire'];
-       $descriptionCollis = $row['Description_collis'];
-       $poidsCollis = $row['Poids_collis'];
-       $bill = $row['Bill_Lading'];
-       $prix[] = $row['prix'];
-       $quantite[] = $row['quantite'];
-       $serviceId = $row['id'];
-       $serviceName[] = $row['nom'];
        $tel = $row['tel'];
        $personne = $row['personne'];
+    //    $clientId = $row['numClient'];
+    //    $nom = $row['Nom'];
+    //    $numDossier = $row['Num_Dossier'];
+    //    $dataCreation = $row['Date_creation'];
+    //    $typeDossier = $row['TypeDossier'];
+    //    $destinataire = $row['Destinataire'];
+    //    $descriptionCollis = $row['Description_collis'];
+    //    $poidsCollis = $row['Poids_collis'];
+    //    $bill = $row['Bill_Lading'];
+    //    
+    //    
+    //    $serviceId = $row['id'];
     //header("Location:../findclient.php?id=".$row['clientId']."&dossierid=".$row['Num_Dossier']."&nom=".$client  );
    }
  } else {
@@ -146,7 +150,7 @@ div.c {
   </tr>
   <tr>
     <td>'.$dataCreation.'</td>
-    <td>'.$numDossier.'</td>
+    <td>'.$numService.'</td>
   </tr>
 </table>
    </div>
@@ -273,5 +277,5 @@ _________________________________________<br>
   ';
 
   $mpdf->WriteHTML($html);
-  $mpdf->Output();
+  $mpdf->output();
 ?>

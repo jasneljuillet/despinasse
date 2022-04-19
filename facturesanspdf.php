@@ -1,15 +1,14 @@
 <?php
-    $id = $_GET['id'];
-    $dossier = $_GET['dossierid'];
-    $nomDossier = $_GET['nom'];
+    require_once("./php_action/core.php");
+    require_once("./includes/header.php");
+
+    $clientId = $_GET['clientName'];
     $nomClient = "";
     $adresse = "";
     $phone = "";
-   
-    require_once('./php_action/core.php');
-    require_once('./includes/header.php');
+
   
-    $sql = "SELECT * FROM client WHERE numClient = '$id' ";
+    $sql = "SELECT * FROM client WHERE numClient = '$clientId' ";
    $result = $connect->query($sql);
 
    $sqlClient = "SELECT * FROM pservices";
@@ -52,19 +51,9 @@
 				  <input type="text" class="form-control" id="clientPhone" name="clientPhone" value=<?php echo $phone ?> disabled>
 				</div>
 			  </div>
-        <div class="form-group">
-				<label for="clientPhone" class="col-sm-3 control-label">Nom dossier</label>
-				<div class="col-sm-9">
-        <input type="text" class="form-control" id="clientPhone" name="clientPhone" value=<?php echo $nomDossier ?> disabled>
-				</div>
-			  </div>
+      
   
-        <div class="form-group">
-				<label for="clientPhone" class="col-sm-3 control-label">No dossier</label>
-				<div class="col-sm-9">
-        <input type="text" class="form-control" id="clientPhone" name="clientPhone" value=<?php echo $dossier ?> disabled>
-				</div>
-			  </div>
+       
     </br>
     </br>
 
@@ -83,15 +72,16 @@
 											<label for="folderType" class="col-sm-3 control-label">Type de services</label>
 												<div class="col-sm-9">
 												  <select class="form-control" id="editServiceType" name="serviceName" required>
-												  
 													<option value="">----Selectionner un service----</option>
                           <?php if($requete) { if($requete->num_rows > 0){ foreach($requete as $data){ ?>
                             <option value="<?= $data['serviceName'] ?>"><?= $data['serviceName'] ?></option>
     <?php }}} else {  echo "Error in ".$sqlClient."<br>".$connect->error; } ?>	
 												  </select>
+                          <!-- <label for="prix" class="col-sm-3 control-label">Prix</label> -->
+                          <input type="number" class="form-control" id="prix" name="prix" placeholder="Prix" required>
                              <!-- <label for="qtservice" class="col-sm-3 control-label">Quantite</label> -->
-                             <input type="number" class="form-control" id="prix" name="prix" placeholder="Prix" required>
                             <input type="number" class="form-control" id="qtservice" name="qtservice" placeholder="Quantite" required>
+                            <input type="number" class="form-control" id="clientId" value="<?php echo $clientId; ?>" name="clientId" style="display: none;" required>
 												</div>
 									</div>
 											
@@ -103,6 +93,9 @@
                         <button type="submit" class="btn btn-primary" name="addService">Save changes</button>
                       </div>
 				 </form>
+         <button type="submit" class="btn btn-primary" name=""><a href="./php_action/facturesans.php?id=<?php echo $clientId; ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
+         <br>
+         <r>
 <?php 
 
   if(isset($_POST['addService'])) {
@@ -110,7 +103,8 @@
     $test = explode(" ", $serviceName);
     $qt = $_POST['qtservice'];
     $prix = $_POST['prix'];
-    $sql ="INSERT INTO service (nom,prix,quantite,client, dossier) VALUES('$test[0]', '$prix','$qt','$id','$dossier')";
+    $id = $_POST['clientId'];
+    $sql ="INSERT INTO service (nom,prix,quantite,client) VALUES('$test[0]', '$prix','$qt','$id')";
     
     if($connect->query($sql)==TRUE) {
       echo"<div class='alert alert-success' role='alert'>
@@ -126,9 +120,7 @@
 
 ?>
 		</div>
-
-
-    <?php require_once ('includes/footer.php');?>
+    <?php require_once ('./includes/footer.php');?>
 
 
  
