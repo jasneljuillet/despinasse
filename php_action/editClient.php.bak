@@ -7,10 +7,10 @@
 		$clientName = $_POST['editClientName'];
 		$clientAddress = $_POST['editClientAddress'];
 		$contactedit = $_POST['contactedit'];
-		$editClientPhone = $_POST['editClientPhone'];
+		$clientPhone = $_POST['editClientPhone'];
 		$teledit = $_POST['teledit'];
 		$clientId = $_POST['clientId'];
-		 $sql ="UPDATE client SET nomClient = '$clientName',adresse ='$clientAddress',personne='$contactedit',phone='$editClientPhone',tel='$teledit' WHERE numClient = '$clientId'";
+		 $sql ="UPDATE client SET nomClient = '$clientName',adresse ='$clientAddress',personne='$contactedit',tel='$teledit' WHERE numClient = '$clientId'";
 		// $result = $connect->query($sql);
 	
 	if($connect->query($sql)==TRUE)

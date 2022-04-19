@@ -128,7 +128,7 @@ $("#submitFormClient").unbind('submit').bind('submit',function(){
 					$("#editClientAddress").val(response.adresse);
 					$("#contactedit").val(response.personne);
 					$("#editClientPhone").val(response.phone);
-					$("#teledit").val(response.tel);
+					$("3teledit").val(response.tel);
 					
 
 $("#editFormClient").unbind('submit').bind('submit',function(){

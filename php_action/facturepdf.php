@@ -85,10 +85,8 @@ if ($result->num_rows > 0) {
 ?> 
 
 <?php 
-
   require_once('../vendor/autoload.php');
-  
-  // ['debug' => true]
+
   $mpdf = new \Mpdf\Mpdf();
 
   $html = '
@@ -204,8 +202,9 @@ div.c {
 </tr>
 <thead>
 ';
+echo count($mg);
+
 for ($i = 0; $i < count($mg); $i++) {
-  
   $html .= '<tr>';
   for($j = 0; $j <= count($mg[$i]); $j++) { 
     if(isset($mg[$i][$j])) {
@@ -271,5 +270,5 @@ _________________________________________<br>
   ';
 
   $mpdf->WriteHTML($html);
-  $mpdf->Output();
+  $mpdf->output();
 ?>

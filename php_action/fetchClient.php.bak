@@ -1,6 +1,6 @@
 <?php 
 		require_once'core.php';
-		$sql ="SELECT numClient, nomClient,adresse,personne,phone,tel FROM client ORDER BY numClient DESC";
+		$sql ="SELECT numClient, nomClient,adresse,personne,phone FROM client ORDER BY numClient DESC";
 
 		$result = $connect->query($sql);
 		$output = array('data' =>array());
@@ -26,7 +26,6 @@
 							$row[2],
 							$row[3],
 							$row[4],
-							$row[5],
 							$button
 							
 						);

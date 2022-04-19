@@ -80,20 +80,21 @@ $(document).ready(function () {
 			}
 			
 			// bill Lading
-			if(bLading =="")
+			/*
+			if((folderType =="Import") &&(bLading==""))
 			{
-				$("#bLading").after('<p class="text-danger">Le num&eacute;ro de Bill est obligatoire</p>');
+				$("#bLading").after('<p class="text-danger">Le Bill est obligatoire</p>');
 				$("#bLading").closest('.form-group').addClass('has-error');
 			}
 			else
 			{
-				// remove text field
 				$("#bLading").find('.text-danger').remove();
 				$("#bLading").closest('.form-group').addClass('has-success');
+
 			}
+			*/
 			
-			
-				if(nameFolder && folderType && creationDate && destinataire && bLading)
+				if(nameFolder && folderType && creationDate && destinataire)
 				{
 					var form =$(this);
 					// button loading
@@ -239,20 +240,10 @@ $(document).ready(function () {
 			}
 			
 			// bill Lading
-			if(bLading =="")
-			{
-				$("#editBLading").after('<p class="text-danger">Le num&eacute;ro de Bill est obligatoire</p>');
-				$("#editBLading").closest('.form-group').addClass('has-error');
-			}
-			else
-			{
-				// remove text field
-				$("#editBLading").find('.text-danger').remove();
-				$("#editBLading").closest('.form-group').addClass('has-success');
-			}
+			
 			
 			 
-				if(nameFolder && folderType && creationDate && destinataire && bLading)
+				if(nameFolder && folderType && creationDate && destinataire)
 				{
 					var form =$(this);
 					// button loading

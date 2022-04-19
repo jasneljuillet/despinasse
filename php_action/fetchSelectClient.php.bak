@@ -3,7 +3,7 @@
 	require_once 'core.php';
 	$clientId = $_POST['clientId'];
 
-	$sql = " SELECT  numClient,nomClient, adresse,personne,phone,tel FROM client WHERE numClient = $clientId";
+	$sql = " SELECT  numClient,nomClient, adresse,phone FROM client WHERE numClient = $clientId";
 	$result = $connect->query($sql);
 
 	if($result ->num_rows > 0)

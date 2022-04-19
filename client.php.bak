@@ -140,7 +140,7 @@
 			   <div class="form-group">
 				<label for="editClientTel" class="col-sm-3 control-label">T&eacute;l&eacute;phone II</label>
 				<div class="col-sm-9">
-				  <input type="text" class="form-control" id="teledit" name="teledit" placeholder="Phone du client">
+				  <input type="text" class="form-control" id="edit" name="editClientPhone" placeholder="Phone du client">
 				</div>
 			  </div>
         

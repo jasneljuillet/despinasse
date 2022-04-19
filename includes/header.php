@@ -77,7 +77,8 @@
 
 
 												</li>
-												<li id="navReport"><a href="report.php"><i class="glyphicon glyphicon-print"></i> Cr&eacute;er un pro-forma</a></li>
+												<li id="navReport"><a href="report.php"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
+												<li id="navReport"><a href="proformat.php"><i class="glyphicon glyphicon-print"></i> Pro-forma</a></li>
 
 
 														

@@ -12,7 +12,7 @@
 		$clientPhone = $_POST['clientPhone'];
 		$tel = $_POST['tel'];
 		
-		$sql ="INSERT INTO client (nomClient,adresse,personne,phone,tel) VALUES('$clientName','$clientAddress','$contact','$clientPhone','$tel')";
+		$sql ="INSERT INTO client (nomClient,adresse,personne,phone) VALUES('$clientName','$clientAddress','$contact','$clientPhone')";
 	
 	if($connect->query($sql)==TRUE)
 	{
