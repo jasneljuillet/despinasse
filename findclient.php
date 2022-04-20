@@ -1,3 +1,13 @@
+<?php 
+session_start();
+
+	if($_SESSION['status'] == 'adm') {
+		require_once ('includes/header.php');
+	} else {
+		require_once ('includes/header2.php');
+	}
+?>
+
 <?php
     $id = $_GET['id'];
     $dossier = $_GET['dossierid'];

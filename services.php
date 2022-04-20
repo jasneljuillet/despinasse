@@ -18,12 +18,12 @@ session_start();
 			</ol>
 
 			<div class="panel">
-			  <div class="panel-heading"><i class="glyphicon glyphicon-edit"></i> G&eacute;rer les Utilisateurs</div>
+			  <div class="panel-heading"><i class="glyphicon glyphicon-edit"></i> G&eacute;rer les Services</div>
 			  <div class="panel-body">
 			    <div class="remove-msg-client"></div>
 
 			    	<div class="div-action pull pull-right" style="padding-bottom:20px;">
-			    		<button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal"> <i class="glyphicon glyphicon-plus-sign"></i> Ajouter un Utilisateur</button>
+			    		<button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal"> <i class="glyphicon glyphicon-plus-sign"></i> Ajouter un Service</button>
 			    		
 
 			    	</div> <!-- action-->
@@ -33,8 +33,7 @@ session_start();
 			    			<thead>
 			    				<tr>
 									<th> Num&eacute;ro </th>
-			    					<th>Username</th>
-									<th>Status</th>
+			    					<th>Nom</th>
 			    					<th style="width:15%;">Options</th>
 			    				</tr>
 			    			</thead>
@@ -55,37 +54,18 @@ session_start();
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><i class="fa fa-plus"> Ajouter un Utilisateur</i></h4>
+        <h4 class="modal-title"><i class="fa fa-plus"> Ajouter un Service</i></h4>
       </div>
-	  <form class="form-horizontal" id="submitFormClient" action="php_action/createUser.php" method="POST">
+	  <form class="form-horizontal" id="submitFormClient" action="php_action/createService.php" method="POST">
       <div class="modal-body">
 		<div id="add-client-messages"></div>
 	  
 			  <div class="form-group">
-				<label for="clientName" class="col-sm-3 control-label">Nom d'Utilisateur </label>
+				<label for="clientName" class="col-sm-3 control-label">Nom</label>
 				<div class="col-sm-9">
 				  <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Nom de l'utilisateur">
 				</div>
 			  </div>
-			  
-			  <div class="form-group">
-				<label for="clientAddress" class="col-sm-3 control-label">Password</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" id="clientAddress" name="clientAddress" placeholder="Mot de passe">
-				</div>
-			  </div> 
-
-
-			  <div class="form-group">
-			  <label for="clientAddress" class="col-sm-3 control-label">Status</label>
-			  <div class="col-sm-9">
-			  <select class="form-select mb-9" aria-label="Default select example" name="status">
-				<option selected>Status de l'utilisateur</option>
-				<option value="adm">ADM</option>
-				<option value="user">USER</option>
-				</select>
-				</div>
-				</div>
 		</div>
 		
         <!-- fin modal body-->
@@ -104,37 +84,17 @@ session_start();
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><i class="fa fa-plus"> Modifier Utilisateur</i></h4>
+        <h4 class="modal-title"><i class="fa fa-plus"> Modifier Service</i></h4>
       </div>
-	  <form class="form-horizontal" id="editFormClient" action="php_action/editUser.php" method="POST">
+	  <form class="form-horizontal" id="editFormClient" action="php_action/editService.php" method="POST">
       <div class="modal-body">
 		<div id="edit-client-messages"></div>
 				 <div class="form-group">
-				<label for="editClientName" class="col-sm-3 control-label">Nom Utilisateur </label>
+				<label for="editClientName" class="col-sm-3 control-label">Nom</label>
 				<div class="col-sm-9">
-				  <input type="text" class="form-control" id="editClientName" name="editClientName" placeholder="Nom du client">
+				  <input type="text" class="form-control" id="editClientName" name="editClientName" placeholder="Nom du service">
 				</div>
 			  </div>
-			 
-			  <div class="form-group">
-				<label for="editClientAddress" class="col-sm-3 control-label">Password</label>
-				<div class="col-sm-9">
-				  <input type="text" class="form-control" id="editClientAddress" name="editClientAddress" placeholder="Adresse du client">
-				</div>
-			  </div>
-
-
-			  <div class="form-group">
-			  <label for="clientAddress" class="col-sm-3 control-label">Status</label>
-			  <div class="col-sm-9">
-			  <select class="form-select mb-9" aria-label="Default select example" name="status">
-				<option selected>Status de l'utilisateur</option>
-				<option value="adm">ADM</option>
-				<option value="user">USER</option>
-				</select>
-				</div>
-				</div>
-        
       </div>
       <div class="modal-footer editClientFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -152,10 +112,10 @@ session_start();
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"> <i class="glyphicon glyphicon-trash"></i>Suppression d'un Utilisateur</h4>
+        <h4 class="modal-title"> <i class="glyphicon glyphicon-trash"></i>Suppression d'un Service</h4>
       </div>
       <div class="modal-body">
-        <p>Souhaitez-vous vraiment supprimer l'utilisateur?</p>
+        <p>Souhaitez-vous vraiment supprimer ce service?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-ok-sign"></i>Close</button>
@@ -166,6 +126,6 @@ session_start();
 </div><!-- /.modal -->
 
 
-	<script type="text/javascript" src="custom/js/users.js"></script>
+	<script type="text/javascript" src="custom/js/services.js"></script>
 
  <?php require_once ('includes/footer.php');?>

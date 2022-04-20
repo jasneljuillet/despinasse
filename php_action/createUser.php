@@ -6,9 +6,10 @@
 	if($_POST){
 
 		$username = $_POST['clientName'];
+		$status = $_POST['status'];
 		$password = md5($_POST['clientAddress']);
-		$email = "";
-		$sql ="INSERT INTO users (username, password, email) VALUES('$username','$password','$email')";
+
+		$sql ="INSERT INTO users (username, password, status) VALUES('$username','$password','$status')";
 	
 	if($connect->query($sql)==TRUE)
 	{

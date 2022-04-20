@@ -1,6 +1,6 @@
 <?php 
 		require_once'core.php';
-		$sql ="SELECT user_id, username, status FROM users ORDER BY user_id DESC";
+		$sql ="SELECT Id, serviceName FROM pservices ORDER BY Id ASC";
 
 		$result = $connect->query($sql);
 		$output = array('data' =>array());
@@ -22,13 +22,8 @@
 						$output['data'][] = array(
 							$row[0],
 							$row[1],
-							$row[2],
 							$button
-						);
-			
-						
-						
-					
+						);			
 				}						
 			$connect->close();
 		echo json_encode($output);

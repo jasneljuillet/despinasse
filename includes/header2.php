@@ -56,28 +56,11 @@
 											
 											
 												  <ul class="nav navbar-nav navbar-right" id="navSetting">
-                          <li id="navDashboard"><a href="dashboard.php"><i class="glyphicon glyphicon-list-alt"></i> Dashboard </a></li>
-                          <li id="navDashboard"><a href="services.php"><i class="glyphicon glyphicon-list"></i> Services </a></li>
+                          
 						  <li id="navClient"><a href="client.php"><i class="glyphicon glyphicon-user"></i> Client </a></li>
 							<li id="navDossier"><a href="dossier.php"><i class="glyphicon glyphicon-folder-open"></i> Dossier </a></li>
 						<li id="navCategories"><a href="categories.php"><i class="glyphicon glyphicon-shopping-cart"></i> Facturation</a></li>
 												
-												<li class="dropdown" id="navOrder">
-                                                          
-														<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-														aria-expanded ="false"><i class="glyphicon glyphicon-user"></i> Personnel<span class="caret"></span></a>
-														
-																<ul class="dropdown-menu">
-																     <li id="topNavAddOrder"><a href="orders.php"><i class="glyphicon glyphicon-plus"></i> Ajouter un employ&eacute;</a></li>
-																	 <li id="topNavManageOrder"><a href="orders.php"><i class="glyphicon glyphicon-edit"></i> G&eacute;rer un employ&eacute;</a></li>
-																
-																</ul>
-															
-
-													
-
-
-												</li>
 												<li id="navReport"><a href="report.php"><i class="glyphicon glyphicon-print"></i> Imprimer</a></li>
 												<li id="navReport"><a href="proformat.php"><i class="glyphicon glyphicon-print"></i> Pro-forma</a></li>
 

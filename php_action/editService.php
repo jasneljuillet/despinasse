@@ -6,16 +6,14 @@
 
 	if($_POST){
 		$clientName = $_POST['editClientName'];
-		$clientAddress = md5($_POST['editClientAddress']);
-		$status = $_POST['status'];
 		$clientId = $_POST['clientId'];
-		 $sql ="UPDATE users SET username = '$clientName',password ='$clientAddress', status='$status' WHERE user_id = '$clientId'";
+		 $sql ="UPDATE pservices SET serviceName = '$clientName' WHERE Id = '$clientId'";
 		// $result = $connect->query($sql);
 	
 	if($connect->query($sql)==TRUE)
 	{
 		$valid['success'] = true;
-		$valid['messages'] = 'L\'utilisateur a ete modifi&eacute; avec succ&egrave;s';
+		$valid['messages'] = 'Le service a ete modifi&eacute; avec succ&egrave;s';
 	}
 	else
 	{

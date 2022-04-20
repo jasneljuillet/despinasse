@@ -1,6 +1,15 @@
+<?php 
+session_start();
+
+	if($_SESSION['status'] == 'adm') {
+		require_once ('includes/header.php');
+	} else {
+		require_once ('includes/header2.php');
+	}
+?>
+
 <?php
     require_once("./php_action/core.php");
-    require_once("./includes/header.php");
 
     $clientId = $_GET['clientName'];
     $nomClient = "";
@@ -93,9 +102,55 @@
                         <button type="submit" class="btn btn-primary" name="addService">Save changes</button>
                       </div>
 				 </form>
-         <button type="submit" class="btn btn-primary" name=""><a href="./php_action/facturesans.php?id=<?php echo $clientId; ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
+        
          <br>
          <r>
+           <!-- services -->
+           <div class="panel">
+			 
+			  <div class="panel-body">
+			    <div class="remove-msg-client"></div>
+			    	<table class="table table-bordered table-striped">
+			    		
+			    			<thead>
+			    				<tr>
+									<th>Service </th>
+			    					<th>Prix</th>
+			    					<th >Quantite</th>
+                    <th>Action</th>
+			    				</tr>
+			    			</thead>
+
+                <tbody>
+                  <?php 
+                    $reqq = "SELECT * FROM service WHERE client = '$clientId' ";
+                    $results = $connect->query($reqq);
+                  ?>
+													<?php if($results->num_rows > 0){ ?>
+                           
+                            <?php
+                            foreach($results as $data){ ?>
+                            <tr>
+                                <td><?= $data['nom']?></td>
+                                <td><?= $data['prix']?></td>
+                                <td><?= $data['quantite']?></td>
+                                <td><a href="facturesanspdf.php?clientName=<?php echo $clientId; ?>&del=<?php echo $data['id']; ?>">Supprimer</a></td>
+                          </tr>
+                        
+                                <?php } ?>
+                                <div>
+                                <button type="submit" class="btn btn-primary " name=""><a href="./php_action/facturesans.php?id=<?php echo $clientId; ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
+                                <button type="submit" class="btn btn-primary text-center" name="">Service(s): <?php echo mysqli_num_rows($results); ?></button>     <br>
+                            </div> <br>
+                             <?php  } ?>	
+											
+                </tbody>
+			    	</table>
+
+			  </div>
+			</div>
+
+           <!-- end -->
 <?php 
 
   if(isset($_POST['addService'])) {
@@ -109,7 +164,14 @@
     if($connect->query($sql)==TRUE) {
       echo"<div class='alert alert-success' role='alert'>
         Success
-      </div>";
+      </div>
+      ";
+
+      echo '<script type="text/JavaScript"> 
+     location.replace("facturesanspdf.php?clientName='.$clientId.'");
+      </script>';
+
+     
     } else {
       echo"<div class='alert alert-danger' role='alert'>
         Echec
@@ -117,6 +179,27 @@
     }
 	
   }
+
+?>
+
+<?php 
+   if(isset($_GET['del'])) {
+     
+     $del = $_GET['del'];
+
+     $del = "DELETE FROM service WHERE id = '$del' ";
+     $resdel = $connect->query($del);
+
+     if($resdel) {
+      echo '<script type="text/JavaScript">
+
+      location.replace("facturesanspdf.php?clientName='.$clientId.'");
+      </script>';
+     }
+     
+   }
+
+
 
 ?>
 		</div>

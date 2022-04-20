@@ -4,8 +4,7 @@ $("#navClient").addClass('active');
 // manage client table
 
 manageClientTable = $("#manageClientTable").DataTable({
-
-		'ajax': 'php_action/fetchUser.php',
+		'ajax': 'php_action/fetchServices.php',
 		'order':[]
 });
 
@@ -17,14 +16,10 @@ $("#submitFormClient").unbind('submit').bind('submit',function(){
 							$(".form-group").removeClass('has-error').removeClass('has-success');
 
 	var clientName = $("#clientName").val();
-	var clientAddress = $("#clientAddress").val();
-	var status = $("#status").val();
-
-	var clientPhone = $("#clientPhone").val();
 
 	if(clientName =="")
 			{
-				$("#clientName").after('<p class="text-danger">Le nom du client est obligatoire</p>');
+				$("#clientName").after('<p class="text-danger">Le nom du service est obligatoire</p>');
 				$("#clientName").closest('.form-group').addClass('has-error');
 			}
 			else
@@ -34,32 +29,9 @@ $("#submitFormClient").unbind('submit').bind('submit',function(){
 				$("#clientName").closest('.form-group').addClass('has-success');
 			}
 
-			if(clientAddress =="")
+			
+			if(clientName)
 			{
-				$("#clientAddress").after('<p class="text-danger">L\'adresse du client est obligatoire</p>');
-				$("#clientAddress").closest('.form-group').addClass('has-error');
-			}
-			else
-			{
-				// remove text field
-				$("#clientAddress").find('.text-danger').remove();
-				$("#clientAddress").closest('.form-group').addClass('has-success');
-			}
-
-			if(status =="")
-			{
-				$("#status").after('<p class="text-danger">Le status est obligatoire</p>');
-				$("#status").closest('.form-group').addClass('has-error');
-			}
-			else
-			{
-				// remove text field
-				$("#status").find('.text-danger').remove();
-				$("#status").closest('.form-group').addClass('has-success');
-			}
-			if(clientName && clientAddress && status)
-			{
-				console.log(status);
 
 				var form = $(this);
 				// $("createClientBtn").button('loading');
@@ -123,7 +95,7 @@ $("#submitFormClient").unbind('submit').bind('submit',function(){
 			$(".editClientFooter").after('<input type="hidden" name ="clientId" id="clientId" value="'+clientId+'"/>');
 			
 			$.ajax({
-				url : 'php_action/fetchSelectUser.php',
+				url : 'php_action/fetchSelectService.php',
 				type :'post',
 				data : {clientId : clientId},
 				dataType : 'json',
@@ -142,8 +114,6 @@ $("#editFormClient").unbind('submit').bind('submit',function(){
 							$(".form-group").removeClass('has-error').removeClass('has-success');
 
 	var clientName = $("#editClientName").val();
-	var clientAddress = $("#editClientAddress").val();
-	var status = $("#status").val();
 
 	if(clientName =="")
 			{
@@ -157,30 +127,7 @@ $("#editFormClient").unbind('submit').bind('submit',function(){
 				$("#editClientName").closest('.form-group').addClass('has-success');
 			}
 
-			if(clientAddress =="")
-			{
-				$("#editClientAddress").after('<p class="text-danger">L\'adresse du client est obligatoire</p>');
-				$("#editClientAddress").closest('.form-group').addClass('has-error');
-			}
-			else
-			{
-				// remove text field
-				$("#editClientAddress").find('.text-danger').remove();
-				$("#editClientAddress").closest('.form-group').addClass('has-success');
-			}
-
-			if(status =="")
-			{
-				$("#status").after('<p class="text-danger">L\'adresse du client est obligatoire</p>');
-				$("#status").closest('.form-group').addClass('has-error');
-			}
-			else
-			{
-				// remove text field
-				$("#status").find('.text-danger').remove();
-				$("#status").closest('.form-group').addClass('has-success');
-			}
-			if(clientName && clientAddress && status)
+			if(clientName)
 			{
 				var form = $(this);
 				//$("createClientBtn").button('loading');
@@ -242,7 +189,7 @@ function removeClient(clientId = null)
 		console.log(clientId)
 		$("#removeClientBtn").unbind('click').bind('click',function(){
 			$.ajax({
-				url : 'php_action/removeUser.php',
+				url : 'php_action/removeService.php',
 				type : 'post',
 				data : { clientId : clientId},
 				dataType : 'json',

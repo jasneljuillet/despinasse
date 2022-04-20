@@ -1,4 +1,13 @@
-<?php require_once ('includes/header.php');?>
+<?php 
+session_start();
+
+	if($_SESSION['status'] == 'adm') {
+		require_once ('includes/header.php');
+	} else {
+		require_once ('includes/header2.php');
+	}
+?>
+
 <?php
 $valueT = 0;
 $sqlClient = "SELECT Num_Dossier,nom From dossier";

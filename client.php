@@ -1,4 +1,13 @@
-<?php require_once ('includes/header.php');?>
+<?php 
+session_start();
+
+	if($_SESSION['status'] == 'adm') {
+		require_once ('includes/header.php');
+	} else {
+		require_once ('includes/header2.php');
+	}
+?>
+
 
 	<div class="row">
 		<div class="col-md-12">
