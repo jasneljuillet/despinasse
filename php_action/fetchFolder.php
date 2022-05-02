@@ -14,6 +14,7 @@
 						    Action <span class="caret"></span>
 						  </button>
 						  <ul class="dropdown-menu">
+						  <li><a href="php_action/printing.php?id='.$folderId.'" target="_blank" type="button" data-toggle="modal" data-target=""><i class="glyphicon glyphicon-print"></i>Print</a></li>
 						    <li><a type="button" data-toggle="modal" data-target="#editFolderModal" onclick="editFolder('.$folderId.')"><i class="glyphicon glyphicon-edit"></i>Edit</a></li>
 						    <li><a type="button" data-toggle="modal" data-target="#removeFolderModal" onclick="removeFolder('.$folderId.')"><i class="glyphicon glyphicon-trash"></i>Remove</a></li>
 						   

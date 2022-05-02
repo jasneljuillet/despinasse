@@ -43,8 +43,7 @@ session_start();
 															<th>Destinataire</th>
 															<th>Description du Collis</th>
 															<th>Poids Collis </th> 
-															<th>Billl Lading</th>
-															
+															<th>Impression</th>
                                                             <th style="width:5;"> Options</th>
                                                         </tr>
                                                  </thead>
