@@ -113,6 +113,52 @@ session_start();
                         <button type="submit" class="btn btn-primary" name="addService">Save changes</button>
                       </div>
 				 </form>
+
+         <div class="panel">
+			 
+			  <div class="panel-body">
+			    <div class="remove-msg-client"></div>
+			    	<table class="table table-bordered table-striped">
+			    		
+			    			<thead>
+			    				<tr>
+									<th>Service </th>
+			    					<th>Prix</th>
+			    					<th >Quantite</th>
+                    <th>Action</th>
+			    				</tr>
+			    			</thead>
+
+                <tbody>
+                  <?php 
+                   $clientId = $_GET['id'];
+                    $reqq = "SELECT * FROM service WHERE client = '$clientId' ";
+                    $results = $connect->query($reqq);
+                  ?>
+													<?php if($results->num_rows > 0){ ?>
+                           
+                            <?php
+                            foreach($results as $data){ ?>
+                            <tr>
+                                <td><?= $data['nom']?></td>
+                                <td><?= $data['prix']?></td>
+                                <td><?= $data['quantite']?></td>
+                                <td><a href="facturesanspdf.php?clientName=<?php echo $clientId; ?>&del=<?php echo $data['id']; ?>">Supprimer</a></td>
+                          </tr>
+                        
+                                <?php } ?>
+                                <div>
+                                <button type="submit" class="btn btn-primary " name=""><a href="./php_action/facturesans.php?id=<?php echo $clientId; ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
+                                <button type="submit" class="btn btn-primary text-center" name="">Service(s): <?php echo mysqli_num_rows($results); ?></button>     <br>
+                            </div> <br>
+                             <?php  } ?>	
+											
+                </tbody>
+			    	</table>
+
+			  </div>
+			</div>
+
 <?php 
 
   if(isset($_POST['addService'])) {

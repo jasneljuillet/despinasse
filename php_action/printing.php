@@ -4,12 +4,31 @@
     $id = $_GET['id'];
 
     $no = 0;
-    $sql = "SELECT * FROM dossier WHERE Num_Dossier = '$id' ";
+    $nom = "";
+    $destinataire = "";
+    $desc = "";
+    $adresse = "";
+    $poids = 0;
+    $tel = 0;
+    $personne = "";
+    $bill = "";
+    $date = "";
+
+    $sql = "SELECT * FROM dossier INNER JOIN client on dossier.clientId = client.numClient WHERE Num_Dossier = '$id' ";
     $result = $connect->query($sql);
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             $no = $row['Num_Dossier'];
+            $nom = $row['Nom'];
+            $destinataire = $row['Destinataire'];
+            $desc = $row['Description_collis'];
+            $adresse = $row['adresse'];
+            $poids = $row['Poids_collis'];
+            $personne = $row['personne'];
+            $tel = $row['tel'];
+            $bill = $row['Bill_Lading'];
+            $date = $row['Date_creation'];
         }
     } else {
 
@@ -83,7 +102,7 @@ div.c {
   <div align="left" style="width: 41.5%;float: right;">
   
   <p style="font-weight: 700;"> &nbsp;<b>No DOSSIER: </b>'.$no.'</p>
-  <p><b>Date: </b>'.date("m/m/Y").'</p>
+  <p><b>Date: </b>'.$date.'</p>
    </div>
 </div>
 
@@ -96,13 +115,13 @@ div.c {
 
 <br><br><br><br>
 <div style="margin-top: -10%; font-style: bold; font-weight: 900;">
-  <span>Nom &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;:</span> <span>&emsp;&emsp;__________________________________________________________________________</span>
-  <span>Adresse &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:</span> <span>&emsp;&emsp;__________________________________________________________________________</span>
-  <span>Destinataire &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:</span> <span>&emsp;&nbsp;___________________________________________________________________________</span>
-  <span>Description des colis &emsp;:</span> <span>&emsp;&emsp;__________________________________________________________________________</span>
-  <span>Poids des colis &emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;:</span> <span>&emsp;&emsp;______________________________&nbsp;Contact :&nbsp; _________________________________</span>
-  <span>AWB/BL No &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;:</span> <span>&emsp;&emsp;_______________________________&nbsp;Tel :&nbsp; _____________________________________</span>
- 
+  <p style="font-weight: bold;">Nom &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: <span style=" font-weight: normal; text-decoration: underline;">&emsp;&emsp;&emsp;'.$nom.'</span><br>
+    Adresse&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;: <span style=" font-weight: normal; text-decoration: underline;">&emsp;&emsp;&emsp;'.$adresse.'</span><br>
+    Destinataire&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: <span style=" font-weight: normal; text-decoration: underline;">&emsp;&emsp;&emsp;'.$destinataire.'</span><br>
+    Description des collis&emsp;&emsp;: <span style=" font-weight: normal; text-decoration: underline;">&emsp;&emsp;&emsp;'.$desc.'</span><br>
+    Poids des colis&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;: <span style=" font-weight: normal; text-decoration: underline;">&emsp;&emsp;&emsp;'.$poids.'g&emsp; Contact: '.$personne.'</span><br>
+    AWB/BL No&emsp;&emsp;&emsp;&nbsp;&nbsp;&emsp;&emsp;&emsp;&emsp;: <span style=" font-weight: normal; text-decoration: underline;">&emsp;&emsp;&emsp;'.$bill.' Tel: '.$tel.'</span><br>
+  </p>
 </div>
 
 <div align="left" style="width: 100%;  float: right; margin-top: 10%;">
