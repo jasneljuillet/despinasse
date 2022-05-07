@@ -6,6 +6,8 @@ session_start();
 	} else {
 		require_once ('includes/header2.php');
 	}
+
+
 ?>
 
 <?php
@@ -15,7 +17,7 @@ session_start();
     $nomClient = "";
     $adresse = "";
     $phone = "";
-   
+       $clientId = $_GET['id'];
     require_once('./php_action/core.php');
     require_once('./includes/header.php');
   
@@ -131,7 +133,7 @@ session_start();
 
                 <tbody>
                   <?php 
-                   $clientId = $_GET['id'];
+               
                     $reqq = "SELECT * FROM service WHERE client = '$clientId' ";
                     $results = $connect->query($reqq);
                   ?>
@@ -148,7 +150,7 @@ session_start();
                         
                                 <?php } ?>
                                 <div>
-                                <button type="submit" class="btn btn-primary " name=""><a href="./php_action/facturesans.php?id=<?php echo $clientId; ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
+                                <button type="submit" class="btn btn-primary " name=""><a target="_blank" href="./php_action/facturesans.php?id=<?php echo $clientId; ?>&dossierid=<?php echo $dossier; ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
                                 <button type="submit" class="btn btn-primary text-center" name="">Service(s): <?php echo mysqli_num_rows($results); ?></button>     <br>
                             </div> <br>
                              <?php  } ?>	

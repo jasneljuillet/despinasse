@@ -78,12 +78,9 @@ session_start();
 												<div class="col-sm-9">
 												  <select class="form-control" id="folderType" name="folderType">
 												  
-													<option value="">----Selectionner un dossier----</option>
-													<option value="1">Import</option>
-													<option value="2">Export</option>
-													<option value="3">Local</option>
-													
-													
+													<option>----Selectionner un dossier----</option>
+													<option value="Aerienne">Aerienne</option>
+													<option value="Maritime">Maritime</option>
 												  </select>
 												</div>
 									</div>
@@ -173,10 +170,11 @@ session_start();
 												<div class="col-sm-9">
 												  <select class="form-control" id="editFolderType" name="editFolderType">
 												  
-													<option value="">----Selectionner un dossier----</option>
-													<option value="Import">Import</option>
-													<option value="Export">Export</option>
-													<option value="Local">Local</option>
+												 
+												  <option name="typeDossier">----Selectionner un dossier----</option>
+													<option value="Aerienne">Aerienne</option>
+													<option value="Maritime">Maritime</option>
+												  </select>
 													
 													
 												  </select>
