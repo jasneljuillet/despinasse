@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 03, 2022 at 06:51 PM
+-- Generation Time: May 08, 2022 at 05:27 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.0
 
@@ -88,32 +88,21 @@ CREATE TABLE IF NOT EXISTS `client` (
   `numClient` int(11) NOT NULL AUTO_INCREMENT,
   `nomClient` varchar(255) NOT NULL,
   `adresse` varchar(255) NOT NULL,
-  `phone` varchar(100) NOT NULL,
+  `personne` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `tel` varchar(255) NOT NULL,
   PRIMARY KEY (`numClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=736 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=743 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`numClient`, `nomClient`, `adresse`, `phone`) VALUES
-(719, 'BEAUDYNE Logistics', 'Nazon rue Celime 3', '2765443'),
-(720, 'Despinasse', '12345', ''),
-(721, 'Despinasse', '12345', ''),
-(722, 'Despinasse', '12345', ''),
-(723, 'Despinasse', '12345', ''),
-(724, 'Despinasse', '12345', ''),
-(725, 'Despinasse', '12345', ''),
-(726, 'Despinasse', '12345', ''),
-(727, 'Despinasse', '12345', ''),
-(728, 'Despinasse', '12345', ''),
-(729, 'Despinasse', '12345', ''),
-(730, 'Despinasse', '12345', ''),
-(731, 'Despinasse', '12345', ''),
-(732, 'Despinasse', '12345', ''),
-(733, 'juillet', '12345', ''),
-(734, 'juillet', '12345', ''),
-(735, 'etienne', 'etienne@gmail.com', '44901752');
+INSERT INTO `client` (`numClient`, `nomClient`, `adresse`, `personne`, `phone`, `tel`) VALUES
+(719, 'BEAUDYNE Logistics', 'Nazon rue Celime 5', 'Martino Pierre', '2765443', '29908651'),
+(740, 'Santpon', '16 bis 2ieme Imp.Lavaud', 'Ilfodotte Valcourt', '39098765', '28789090'),
+(741, 'UNIBANK', '2,rue celimene Nzon', 'Marinez Lopez', '28909090', '34567890'),
+(742, 'FAES', '3, Delmas 75', 'Jenny Lia', '28789090', '22212345');
 
 -- --------------------------------------------------------
 
@@ -163,17 +152,19 @@ CREATE TABLE IF NOT EXISTS `dossier` (
   `clientId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Num_Dossier`),
   KEY `FK_Client` (`clientId`)
-) ENGINE=InnoDB AUTO_INCREMENT=936 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=940 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dossier`
 --
 
 INSERT INTO `dossier` (`Num_Dossier`, `Nom`, `TypeDossier`, `Date_creation`, `Destinataire`, `Description_collis`, `Poids_collis`, `Bill_Lading`, `clientId`) VALUES
-(907, 'Desmartech', 'Local', '2022-03-02', 'Port-au-Prine', 'Concentre', 140000, 'QWERTYUIOP', 719),
-(928, 'VAMARK', 'Local', '2020-04-05', 'Jacmel', 'Compact', 12345.9, 'VAMARK900', 719),
-(929, 'UNIBANK', 'Local', '2022-06-02', 'Jacmel', 'Concentre', 12345, 'UNI900', 719),
-(932, 'NATCOM', 'Local', '2022-03-27', 'Jacmel', 'Concentre', 12450, 'NATCOM', 719);
+(907, 'Desmartech', 'Local', '2022-03-02', 'Port-au-Prine', 'Concentre', 140000, '', 719),
+(928, 'VAMARK', 'Local', '2020-04-05', 'Jacmel', 'Compact', 12345.9, '', 719),
+(929, 'UNIBANK', 'Local', '2022-06-02', 'Jacmel', 'Concentre', 12345, '', 719),
+(932, 'NATCOM', 'Local', '2022-03-27', 'Jacmel', 'Concentre', 12450, '', 719),
+(938, 'vamark', 'Local', '2022-04-04', 'Jeremie', 'Concentre', 12345, '', 719),
+(939, 'Jasnel', 'Local', '2022-05-07', 'Jasnel Juillet', 'Description des collis', 120, '45', 742);
 
 -- --------------------------------------------------------
 
@@ -285,21 +276,45 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_code`, `product_im
 
 DROP TABLE IF EXISTS `pservices`;
 CREATE TABLE IF NOT EXISTS `pservices` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `serviceName` varchar(100) NOT NULL,
-  `serviceDesc` text NOT NULL,
-  `servicePrix` float(10,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `prix` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pservices`
 --
 
-INSERT INTO `pservices` (`Id`, `serviceName`, `serviceDesc`, `servicePrix`) VALUES
-(1, 'Tranport', 'Tranport', 50),
-(2, 'Shipping', 'Shipping', 100),
-(1, 'Tranport', 'Tranport', 50),
-(2, 'Shipping', 'Shipping', 100);
+INSERT INTO `pservices` (`Id`, `serviceName`, `prix`) VALUES
+(1, 'Shipping', 50),
+(2, 'Transport', 40),
+(5, 'Livraison', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reference`
+--
+
+DROP TABLE IF EXISTS `reference`;
+CREATE TABLE IF NOT EXISTS `reference` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `no_reference` varchar(180) NOT NULL,
+  `dossier` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `dossier` (`dossier`)
+) ENGINE=MyISAM AUTO_INCREMENT=166 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reference`
+--
+
+INSERT INTO `reference` (`id`, `no_reference`, `dossier`) VALUES
+(1, 'ajsn45', 939),
+(165, 'despinasse2022-2023-2024', 939),
+(157, '7799', 939),
+(162, 'des001', 939);
 
 -- --------------------------------------------------------
 
@@ -318,22 +333,190 @@ CREATE TABLE IF NOT EXISTS `service` (
   PRIMARY KEY (`id`),
   KEY `FK_clint` (`client`),
   KEY `FK_Dossier` (`dossier`)
-) ENGINE=InnoDB AUTO_INCREMENT=932 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1160 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service`
 --
 
 INSERT INTO `service` (`id`, `nom`, `prix`, `quantite`, `client`, `dossier`) VALUES
-(1, 'Shipping', 100, 6, 719, 929),
-(2, 'Tranport', 50, 3, 719, 928),
 (3, 'Tranport', 50, 5, 719, 907),
 (4, 'Tranport', 50, 10, 719, 907),
 (5, 'Shipping', 100, 3, 719, 907),
 (928, 'Billet Avion', 250, 3, 719, 928),
 (929, 'Visa Saint Domingue', 400, 1, 719, 929),
 (930, 'Shipping', 100, 2, 719, 907),
-(931, 'Tranport', 50, 25, 719, 907);
+(931, 'Tranport', 50, 25, 719, 907),
+(932, 'Tranport', 50, 1, 719, 929),
+(936, 'Tranport', 90, 3, 740, NULL),
+(938, 'Tranport', 45, 3, 740, NULL),
+(939, 'Tranport', 40, 2, 740, NULL),
+(940, 'Tranport', 12, 2, 740, NULL),
+(947, 'Tranport', 120, 1, 719, 938),
+(948, 'Shipping', 150, 2, 719, 938),
+(952, 'Tranport', 22, 2, 741, NULL),
+(957, 'Shipping', 22, 1, 741, NULL),
+(960, 'Shipping', 22, 1, 741, NULL),
+(965, 'Shipping', 22, 1, 741, NULL),
+(968, 'Shipping', 22, 1, 741, NULL),
+(969, 'Shipping', 22, 1, 741, NULL),
+(970, 'Shipping', 22, 1, 741, NULL),
+(971, 'Shipping', 22, 1, 741, NULL),
+(972, 'Shipping', 22, 1, 741, NULL),
+(973, 'Shipping', 22, 1, 741, NULL),
+(974, 'Shipping', 22, 1, 741, NULL),
+(975, 'Shipping', 22, 1, 741, NULL),
+(976, 'Shipping', 22, 1, 741, NULL),
+(977, 'Shipping', 22, 1, 741, NULL),
+(978, 'Shipping', 22, 1, 741, NULL),
+(979, 'Shipping', 22, 1, 741, NULL),
+(980, 'Shipping', 22, 1, 741, NULL),
+(981, 'Shipping', 22, 1, 741, NULL),
+(982, 'Shipping', 22, 1, 741, NULL),
+(983, 'Shipping', 22, 1, 741, NULL),
+(984, 'Shipping', 22, 1, 741, NULL),
+(985, 'Shipping', 22, 1, 741, NULL),
+(986, 'Shipping', 22, 1, 741, NULL),
+(987, 'Shipping', 22, 1, 741, NULL),
+(988, 'Shipping', 22, 1, 741, NULL),
+(989, 'Shipping', 22, 1, 741, NULL),
+(990, 'Shipping', 22, 1, 741, NULL),
+(991, 'Shipping', 22, 1, 741, NULL),
+(992, 'Shipping', 22, 1, 741, NULL),
+(995, 'Shipping', 22, 1, 741, NULL),
+(996, 'Shipping', 22, 1, 741, NULL),
+(998, 'Shipping', 22, 1, 741, NULL),
+(999, 'Shipping', 22, 1, 741, NULL),
+(1003, 'Shipping', 22, 1, 741, NULL),
+(1004, 'Shipping', 22, 1, 741, NULL),
+(1005, 'Shipping', 22, 1, 741, NULL),
+(1007, 'Shipping', 22, 1, 741, NULL),
+(1008, 'Shipping', 22, 1, 741, NULL),
+(1009, 'Shipping', 22, 1, 741, NULL),
+(1010, 'Shipping', 22, 1, 741, NULL),
+(1011, 'Shipping', 22, 1, 741, NULL),
+(1012, 'Shipping', 22, 1, 741, NULL),
+(1013, 'Shipping', 22, 1, 741, NULL),
+(1014, 'Shipping', 22, 1, 741, NULL),
+(1015, 'Shipping', 22, 1, 741, NULL),
+(1016, 'Shipping', 22, 1, 741, NULL),
+(1017, 'Shipping', 22, 1, 741, NULL),
+(1018, 'Shipping', 22, 1, 741, NULL),
+(1019, 'Shipping', 22, 1, 741, NULL),
+(1020, 'Shipping', 22, 1, 741, NULL),
+(1021, 'Shipping', 22, 1, 741, NULL),
+(1023, 'Shipping', 22, 1, 741, NULL),
+(1024, 'Shipping', 22, 1, 741, NULL),
+(1025, 'Shipping', 22, 1, 741, NULL),
+(1026, 'Shipping', 22, 1, 741, NULL),
+(1027, 'Shipping', 22, 1, 741, NULL),
+(1029, 'Shipping', 22, 1, 741, NULL),
+(1030, 'Shipping', 22, 1, 741, NULL),
+(1031, 'Shipping', 22, 1, 741, NULL),
+(1032, 'Shipping', 22, 1, 741, NULL),
+(1033, 'Shipping', 22, 1, 741, NULL),
+(1034, 'Shipping', 22, 1, 741, NULL),
+(1035, 'Shipping', 22, 1, 741, NULL),
+(1036, 'Shipping', 22, 1, 741, NULL),
+(1037, 'Shipping', 22, 1, 741, NULL),
+(1038, 'Shipping', 22, 1, 741, NULL),
+(1039, 'Shipping', 22, 1, 741, NULL),
+(1040, 'Shipping', 22, 1, 741, NULL),
+(1041, 'Shipping', 22, 1, 741, NULL),
+(1042, 'Shipping', 22, 1, 741, NULL),
+(1043, 'Shipping', 22, 1, 741, NULL),
+(1044, 'Shipping', 22, 1, 741, NULL),
+(1045, 'Shipping', 22, 1, 741, NULL),
+(1046, 'Shipping', 22, 1, 741, NULL),
+(1048, 'Shipping', 22, 1, 741, NULL),
+(1049, 'Shipping', 22, 1, 741, NULL),
+(1050, 'Shipping', 22, 1, 741, NULL),
+(1051, 'Shipping', 22, 1, 741, NULL),
+(1052, 'Shipping', 22, 1, 741, NULL),
+(1053, 'Shipping', 22, 1, 741, NULL),
+(1054, 'Shipping', 22, 1, 741, NULL),
+(1055, 'Shipping', 22, 1, 741, NULL),
+(1056, 'Shipping', 22, 1, 741, NULL),
+(1057, 'Shipping', 22, 1, 741, NULL),
+(1058, 'Shipping', 22, 1, 741, NULL),
+(1059, 'Shipping', 22, 1, 741, NULL),
+(1060, 'Shipping', 22, 1, 741, NULL),
+(1061, 'Shipping', 22, 1, 741, NULL),
+(1062, 'Shipping', 22, 1, 741, NULL),
+(1063, 'Shipping', 22, 1, 741, NULL),
+(1064, 'Shipping', 22, 1, 741, NULL),
+(1065, 'Shipping', 22, 1, 741, NULL),
+(1066, 'Shipping', 22, 1, 741, NULL),
+(1067, 'Shipping', 22, 1, 741, NULL),
+(1068, 'Shipping', 22, 1, 741, NULL),
+(1069, 'Shipping', 22, 1, 741, NULL),
+(1071, 'Shipping', 22, 1, 741, NULL),
+(1072, 'Shipping', 22, 1, 741, NULL),
+(1073, 'Shipping', 22, 1, 741, NULL),
+(1074, 'Shipping', 22, 1, 741, NULL),
+(1075, 'Shipping', 22, 1, 741, NULL),
+(1076, 'Shipping', 22, 1, 741, NULL),
+(1077, 'Shipping', 22, 1, 741, NULL),
+(1078, 'Shipping', 22, 1, 741, NULL),
+(1079, 'Shipping', 22, 1, 741, NULL),
+(1080, 'Shipping', 22, 1, 741, NULL),
+(1081, 'Shipping', 22, 1, 741, NULL),
+(1083, 'Shipping', 22, 1, 741, NULL),
+(1084, 'Shipping', 22, 1, 741, NULL),
+(1085, 'Shipping', 22, 1, 741, NULL),
+(1086, 'Shipping', 22, 1, 741, NULL),
+(1087, 'Shipping', 22, 1, 741, NULL),
+(1088, 'Shipping', 22, 1, 741, NULL),
+(1089, 'Shipping', 22, 1, 741, NULL),
+(1090, 'Shipping', 22, 1, 741, NULL),
+(1091, 'Shipping', 22, 1, 741, NULL),
+(1092, 'Shipping', 22, 1, 741, NULL),
+(1093, 'Shipping', 22, 1, 741, NULL),
+(1094, 'Shipping', 22, 1, 741, NULL),
+(1095, 'Shipping', 22, 1, 741, NULL),
+(1096, 'Shipping', 22, 1, 741, NULL),
+(1097, 'Shipping', 22, 1, 741, NULL),
+(1098, 'Shipping', 22, 1, 741, NULL),
+(1099, 'Shipping', 22, 1, 741, NULL),
+(1100, 'Shipping', 22, 1, 741, NULL),
+(1101, 'Shipping', 22, 1, 741, NULL),
+(1102, 'Shipping', 22, 1, 741, NULL),
+(1103, 'Shipping', 22, 1, 741, NULL),
+(1104, 'Shipping', 22, 1, 741, NULL),
+(1105, 'Shipping', 22, 1, 741, NULL),
+(1106, 'Shipping', 22, 1, 741, NULL),
+(1107, 'Tranport', 33, 1, 741, NULL),
+(1108, 'Tranport', 33, 1, 741, NULL),
+(1109, 'Tranport', 33, 1, 741, NULL),
+(1110, 'Tranport', 33, 1, 741, NULL),
+(1111, 'Tranport', 33, 1, 741, NULL),
+(1112, 'Tranport', 33, 1, 741, NULL),
+(1113, 'Tranport', 33, 1, 741, NULL),
+(1114, 'Tranport', 33, 1, 741, NULL),
+(1115, 'Tranport', 33, 1, 741, NULL),
+(1116, 'Tranport', 33, 1, 741, NULL),
+(1117, 'Tranport', 33, 1, 741, NULL),
+(1118, 'Tranport', 33, 1, 741, NULL),
+(1119, 'Tranport', 33, 1, 741, NULL),
+(1121, 'Tranport', 33, 1, 741, NULL),
+(1122, 'Tranport', 33, 1, 741, NULL),
+(1123, 'Tranport', 33, 1, 741, NULL),
+(1124, 'Tranport', 33, 1, 741, NULL),
+(1127, 'Tranport', 33, 1, 741, NULL),
+(1128, 'Tranport', 33, 1, 741, NULL),
+(1129, 'Tranport', 33, 1, 741, NULL),
+(1130, 'Tranport', 33, 1, 741, NULL),
+(1132, 'Tranport', 33, 1, 741, NULL),
+(1135, 'Tranport', 33, 1, 741, NULL),
+(1149, 'Shipping', 60, 5, 742, NULL),
+(1150, 'Shipping', 20, 5, 742, NULL),
+(1151, 'Tranport', 25, 3, 742, NULL),
+(1152, 'Tranport', 44, 4, 742, NULL),
+(1153, 'Shipping', 67, 6, 742, NULL),
+(1156, 'Tranport', 45, 2, 719, NULL),
+(1157, 'Livraison', 77, 2, 740, NULL),
+(1158, 'Transport', 45, 3, 742, 939),
+(1159, 'Transport', 45, 3, 742, 939);
 
 -- --------------------------------------------------------
 
@@ -365,6 +548,28 @@ INSERT INTO `tempcart` (`Id`, `client`, `product`, `price`, `isactive`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transport`
+--
+
+DROP TABLE IF EXISTS `transport`;
+CREATE TABLE IF NOT EXISTS `transport` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `typedossier` enum('Aerien','Maritime','Routier') NOT NULL,
+  `dossier` int(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `FK_Transport` (`dossier`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transport`
+--
+
+INSERT INTO `transport` (`Id`, `typedossier`, `dossier`) VALUES
+(1, 'Maritime', 939);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -373,17 +578,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `status` varchar(100) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `email`) VALUES
-(2, 'jasnel', '827ccb0eea8a706c4c34a16891f84e7b', ''),
-(5, 'Despinas', '827ccb0eea8a706c4c34a16891f84e7b', '');
+INSERT INTO `users` (`user_id`, `username`, `password`, `status`) VALUES
+(2, 'jasnel', '827ccb0eea8a706c4c34a16891f84e7b', 'adm'),
+(5, 'Despinas', '827ccb0eea8a706c4c34a16891f84e7b', 'user'),
+(7, 'carine', 'b59c67bf196a4758191e42f76670ceba', 'user'),
+(8, 'pierre', '84675f2baf7140037b8f5afe54eef841', 'user'),
+(9, 'saul2', 'b59c67bf196a4758191e42f76670ceba', 'adm'),
+(11, 'jjj', 'b59c67bf196a4758191e42f76670ceba', 'user');
 
 --
 -- Constraints for dumped tables
@@ -401,6 +610,12 @@ ALTER TABLE `dossier`
 ALTER TABLE `service`
   ADD CONSTRAINT `FK_Dossier` FOREIGN KEY (`dossier`) REFERENCES `dossier` (`Num_Dossier`),
   ADD CONSTRAINT `FK_clint` FOREIGN KEY (`client`) REFERENCES `client` (`numClient`);
+
+--
+-- Constraints for table `transport`
+--
+ALTER TABLE `transport`
+  ADD CONSTRAINT `FK_Transport` FOREIGN KEY (`dossier`) REFERENCES `dossier` (`Num_Dossier`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -142,7 +142,7 @@ div.c {
   <table style="width: 100%; margin-top: -40px; ">
   <tr style="background-color: gray;">
     <th>Date</th>
-    <th>No Proforma</th>
+    <th>No Dossier</th>
   </tr>
   <tr>
     <td>'.$dataCreation.'</td>

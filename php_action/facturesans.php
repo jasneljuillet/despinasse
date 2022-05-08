@@ -24,15 +24,27 @@ $prix = [];
 $quantite = [];
 $serviceId = "";
 $serviceName = [];
+
+
+$referene = [];
+
 $sql = "SELECT * FROM service INNER JOIN client on service.client = client.numClient where service.client = '$client' ";
-$sql2 = "SELECT * FROM dossier WHERE Num_Dossier = '$dossier' AND clientId = '$client' ";
+$sql2 = "SELECT * FROM transport WHERE dossier = '$dossier' ";
+$sql3 = "SELECT * FROM reference WHERE dossier = '$dossier' ";
 
 $result = $connect->query($sql);
 $result2 = $connect->query($sql2);
+$result3 = $connect->query($sql3);
 
 if($result2 -> num_rows > 0) {
   while($row = $result2->fetch_assoc()) {
-    $typeDossier = $row['TypeDossier'];
+    $typeDossier = $row['typedossier'];
+  }
+}
+
+if($result3 -> num_rows > 0) {
+  while($row = $result3->fetch_assoc()) {
+    $referene[] = $row['no_reference'];
   }
 }
 
@@ -156,7 +168,7 @@ div.c {
   <table style="width: 100%; margin-top: -40px; ">
   <tr style="background-color: gray;">
     <th>Date</th>
-    <th>No Dossier</th>
+    <th>No Proforma</th>
   </tr>
   <tr>
     <td>'.$dataCreation.'</td>
@@ -193,7 +205,13 @@ div.c {
 <th style="text-align:center;">Transport</th>
 </tr>
 <tr>
-<td>Import<br>Personnal</td>
+<td>';
+  for($i = 0; $i < count($referene); $i++) {
+    $html .=$referene[$i].'<br>';
+  }
+$html.=
+'
+</td>
 <td>'.$typeDossier.'</td>
 </tr>
 
