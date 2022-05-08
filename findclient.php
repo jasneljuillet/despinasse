@@ -175,10 +175,11 @@ session_start();
 
                             $dos = $_GET['dossierid'];
 
-                            $test = "SELECT * FROM transport WHERE dossier = '$dos' ";
-                            $results = $connect->query($test);
+                            //$test = "SELECT * FROM transport WHERE dossier = '$dos' ";
 
-                            if($result-> num_rows > 0) {
+                            $results = mysqli_query($connect, "SELECT * FROM transport WHERE dossier = '$dos' ");
+
+                            if(mysqli_num_rows($results)) {
                               $req = "UPDATE transport set typedossier = '$trans' WHERE dossier = '$dossier' ";
                             
                               if($connect->query($req) == TRUE)  {
