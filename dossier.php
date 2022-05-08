@@ -79,8 +79,9 @@ session_start();
 												  <select class="form-control" id="folderType" name="folderType">
 												  
 													<option>----Selectionner un dossier----</option>
-													<option value="Aerienne">Aerienne</option>
-													<option value="Maritime">Maritime</option>
+													<option value="Import">Import</option>
+													<option value="Export">Export</option>
+													<option value="Local">Local</option>
 												  </select>
 												</div>
 									</div>
@@ -172,8 +173,9 @@ session_start();
 												  
 												 
 												  <option name="typeDossier">----Selectionner un dossier----</option>
-													<option value="Aerienne">Aerienne</option>
-													<option value="Maritime">Maritime</option>
+													<option value="Import">Import</option>
+													<option value="Export">Export</option>
+													<option value="Local">Local</option>
 												  </select>
 													
 													

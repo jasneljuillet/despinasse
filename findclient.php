@@ -134,7 +134,7 @@ session_start();
                 <tbody>
                   <?php 
                
-                    $reqq = "SELECT * FROM service WHERE client = '$clientId' ";
+                    $reqq = "SELECT * FROM service WHERE client = '$clientId' AND dossier = '$dossier' ";
                     $results = $connect->query($reqq);
                   ?>
 													<?php if($results->num_rows > 0){ ?>
