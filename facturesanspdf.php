@@ -139,8 +139,64 @@ session_start();
                         
                                 <?php } ?>
                                 <div>
-                                <button type="submit" class="btn btn-primary " name=""><a href="./php_action/facturesans.php?id=<?php echo $clientId; ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
+                                <button type="submit" class="btn btn-primary " name=""><a href="./php_action/facturesans.php?id=<?php echo $clientId; ?>&dossierid=<?php echo 000 ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
                                 <button type="submit" class="btn btn-primary text-center" name="">Service(s): <?php echo mysqli_num_rows($results); ?></button>     <br>
+
+                                  <br>
+                                <form method="post" action="#">
+                                <div class="form-group">
+															<label for="folderName" class="col-sm-3 control-label">Type de transport</label>
+														
+                              <div class="col-sm-9">
+												  <select class="form-control" id="folderType" name="typetransport">
+												  
+													<option>----Selectionner un Transport----</option>
+													<option value="Aerien">Aerien</option>
+													<option value="Maritime">Maritime</option>
+													<option value="Routier">Routier</option>
+												  </select>
+												</div>
+                              
+                        <?php 
+                          if(isset($_POST['trans'])) {
+                            $trans = $_POST['typetransport'];
+
+                            $dos = $_GET['dossierid'];
+
+                            //$test = "SELECT * FROM transport WHERE dossier = '$dos' ";
+
+                            $results = mysqli_query($connect, "SELECT * FROM transport WHERE dossier = '$dos' ");
+
+                            if(mysqli_num_rows($results)) {
+                              $req = "UPDATE transport set typedossier = '$trans' WHERE dossier = '$dossier' ";
+                            
+                              if($connect->query($req) == TRUE)  {
+                                echo"<script type='text/javascript'>alert('Success')</script>";
+                              } else {
+                                echo"<script type='text/javascript'>alert('Echec')</script>";
+                              }
+                            } else {
+                              $req = "INSERT INTO transport(typedossier, dossier) VALUES ('$trans', '$dos') ";
+                            
+                              if($connect->query($req) == TRUE)  {
+                                echo"<div class='alert alert-success' role='alert'>
+                                  Success
+                                </div>";
+                              } else {
+                                echo"<div class='alert alert-danger' role='alert'>
+                                  Echec
+                              </div>";
+                              }
+                            }     
+
+                          }
+                        
+                        ?>
+
+                            <button type="submit" class="btn btn-primary text-center" name="trans">Ajouter</button>
+												</div>
+                            </form>
+
                             </div> <br>
                              <?php  } ?>	
 											

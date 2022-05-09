@@ -304,5 +304,5 @@ _________________________________________<br>
   ';
 
   $mpdf->WriteHTML($html);
-  $mpdf->output();
+  $mpdf->Output();
 ?>
