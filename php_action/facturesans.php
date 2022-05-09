@@ -28,7 +28,7 @@ $serviceName = [];
 
 $referene = [];
 
-$sql = "SELECT * FROM service INNER JOIN client on service.client = client.numClient where service.client = '$client' ";
+$sql = "SELECT * FROM dossier INNER JOIN client on dossier.clientId = client.numClient INNER JOIN service on dossier.num_Dossier = service.dossier where dossier.clientId = '$client' ";
 $sql2 = "SELECT * FROM transport WHERE dossier = '$dossier' ";
 $sql3 = "SELECT * FROM reference WHERE dossier = '$dossier' ";
 
