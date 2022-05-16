@@ -143,8 +143,9 @@ session_start();
                            
                             <?php
                             foreach($results as $data){ ?>
+                         
                             <tr>
-                                <td><?= $data['nom']?></td>
+                                <td> <?php print $data['nom']; ?>
                                 <td><?= $data['prix']?></td>
                                 <td><?= $data['quantite']?></td>
                                 <td><a href="facturesanspdf.php?clientName=<?php echo $clientId; ?>&del=<?php echo $data['id']; ?>">Supprimer</a></td>
@@ -324,7 +325,7 @@ session_start();
     $test = explode(" ", $serviceName);
     $qt = $_POST['qtservice'];
     $prix = $_POST['prix'];
-    $sql ="INSERT INTO service (nom,prix,quantite,client, dossier) VALUES('$test[0]', '$prix','$qt','$id','$dossier')";
+    $sql ="INSERT INTO service (nom,prix,quantite,client, dossier) VALUES('$serviceName', '$prix','$qt','$id','$dossier')";
     
     if($connect->query($sql)==TRUE) {
       echo"<div class='alert alert-success' role='alert'>

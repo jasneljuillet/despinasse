@@ -275,7 +275,7 @@ for ($i = 0; $i < count($mg); $i++) {
   for($j = 0; $j <= count($mg[$i]); $j++) { 
     if(isset($mg[$i][$j])) {
       // echo $mg[$i][$j]."</br>";
-      $html .='<td>'.$mg[$i][$j].'</td>';
+      $html .='<td style="height: 15px!imortant;">'.$mg[$i][$j].'</td>';
     } 
   }
  
