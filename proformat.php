@@ -22,8 +22,6 @@ $sqlT = "SELECT price FROM tempcart where isActive = true";
 $requeteT = $connect->query($sqlT);
 // $connect ->close();
 
-
-
 ?>
  <!-- end of row -->
 
@@ -77,7 +75,7 @@ $requeteT = $connect->query($sqlT);
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" id="createdSalesClientBtn" name="submitForm" data-loading-text="loading...">Procceder</button>
+                        <button type="submit" class="btn btn-primary" id="createdSalesClientBtn" name="submitForm" data-loading-text="loading...">Procced</button>
                       </div>
 				 </form>
 				  

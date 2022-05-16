@@ -161,14 +161,14 @@ session_start();
                           if(isset($_POST['trans'])) {
                             $trans = $_POST['typetransport'];
 
-                            $dos = $_GET['dossierid'];
+                            $dos = $_GET['clientName'];
 
                             //$test = "SELECT * FROM transport WHERE dossier = '$dos' ";
 
-                            $results = mysqli_query($connect, "SELECT * FROM transport WHERE dossier = '$dos' ");
+                            $results = mysqli_query($connect, "SELECT * FROM clienttransport WHERE client = '$dos' ");
 
                             if(mysqli_num_rows($results)) {
-                              $req = "UPDATE transport set typedossier = '$trans' WHERE dossier = '$dossier' ";
+                              $req = "UPDATE clienttransport set typeDossier = '$trans' WHERE client = '$dos' ";
                             
                               if($connect->query($req) == TRUE)  {
                                 echo"<script type='text/javascript'>alert('Success')</script>";
@@ -176,7 +176,7 @@ session_start();
                                 echo"<script type='text/javascript'>alert('Echec')</script>";
                               }
                             } else {
-                              $req = "INSERT INTO transport(typedossier, dossier) VALUES ('$trans', '$dos') ";
+                              $req = "INSERT INTO clienttransport(typeDossier, client) VALUES ('$trans', '$dos') ";
                             
                               if($connect->query($req) == TRUE)  {
                                 echo"<div class='alert alert-success' role='alert'>
@@ -254,10 +254,89 @@ session_start();
      }
      
    }
-
-
-
 ?>
+
+
+                    <!-- reference -->
+                    <div class="container">
+         <div class="panel-body">
+			    <div class="remove-msg-client"></div>
+			    	<table class="table table-bordered table-striped">
+			    		
+			    			<thead>
+			    				<tr>
+                    <th>Type Transport</th>
+                    <th>Action</th>
+			    				</tr>
+			    			</thead>
+                        <?php
+                        $client = $_GET['clientName'];
+
+                        $req = "SELECT * FROM clienttransport WHERE client = '$client' ";
+                        $results = $connect->query($req); ?>
+
+                        
+                        <?php if($results->num_rows > 0){ ?>
+                          <?php
+                            foreach($results as $data){ ?>
+                            <tr>
+                                <td><?= $data['typeDossier']?></td>   
+                                <td> <a href="facturesanspdf.php?clientName=<?php echo $client?>&idetrans=<?php echo $data['Id'] ?>">Supprimer</a> </td>
+                          </tr>
+                        
+                           <?php }}
+
+                           ?>
+                                
+                        
+                       
+                <tbody>
+
+                <?php 
+                
+                  if(isset($_GET['ideref'])) {
+                    $del = $_GET['ideref'];
+
+                    $del = "DELETE FROM reference WHERE id = '$del' ";
+                    $rr = $connect->query($del);
+                    echo "<script>
+                    window.onload = function() {
+                      if(!window.location.hash) {
+                        window.location = window.location + '#loaded';
+		                    window.location.reload();
+                      }
+                    }
+                    </script>";
+                  }
+
+                  ?>
+                </tbody>
+			    	</table>
+
+			  </div>
+			</div>
+		</div>
+
+    <!-- transport -->
+    <?php 
+                
+                if(isset($_GET['idetrans'])) {
+                  $del = $_GET['idetrans'];
+
+                  $del = "DELETE FROM  clienttransport WHERE Id = '$del' ";
+                  $rr = $connect->query($del);
+                  echo "<script>
+                  window.onload = function() {
+                    if(!window.location.hash) {
+                      window.location = window.location + '#loaded';
+                      window.location.reload();
+                    }
+                  }
+                  </script>";
+                }
+
+                ?>
+
 		</div>
     <?php require_once ('./includes/footer.php');?>
 

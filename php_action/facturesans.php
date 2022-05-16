@@ -5,6 +5,7 @@ require('core.php');
 
 
 $client = $_GET['id'];
+$check = $_GET['se'];
 $adresse = "";
 $nomClient = "";
 $phone = "";
@@ -19,18 +20,29 @@ $descriptionCollis = "";
 $poidsCollis = "";
 $bill = "";
 $tel = "";
+$type = "";
 $personne = "";
 $prix = [];
 $quantite = [];
 $serviceId = "";
 $serviceName = [];
-
+$dossierouproformat = "";
 
 $referene = [];
+$req = "";
 
-$sql = "SELECT * FROM dossier INNER JOIN client on dossier.clientId = client.numClient INNER JOIN service on dossier.num_Dossier = service.dossier where dossier.clientId = '$client' ";
+if(isset($check)) {
+  $sql = "SELECT * FROM dossier INNER JOIN client on dossier.clientId = client.numClient INNER JOIN service on dossier.num_Dossier = service.dossier where dossier.clientId = '$client' ";
+  $type = "No Dossier";
+  $dossierouproformat = $_GET['dossierid'];
+} else {
+  $sql = "SELECT * FROM service INNER JOIN client on service.client = client.numClient INNER JOIN clienttransport on client.numClient = clienttransport.client where service.client = '$client' ";
+  $type = "No Proforma";
+}
+
 $sql2 = "SELECT * FROM transport WHERE dossier = '$dossier' ";
 $sql3 = "SELECT * FROM reference WHERE dossier = '$dossier' ";
+
 
 $result = $connect->query($sql);
 $result2 = $connect->query($sql2);
@@ -52,7 +64,14 @@ if ($result->num_rows > 0) {
    // output data of each row
    while($row = $result->fetch_assoc()) {
        $nomClient = $row['nomClient'];
-        $numService = $row['id'];
+
+        if(empty($dossierouproformat)) {
+          $dossierouproformat =  $row['id'];
+        }
+
+        if(empty($typeDossier)) {
+          $typeDossier = $row['typeDossier'];
+        }
         $dataCreation = date("Y/m/d");
         $serviceName[] = $row['nom'];
         $quantite[] = $row['quantite'];
@@ -82,6 +101,7 @@ if ($result->num_rows > 0) {
    </script>";
  }
 
+ echo $dossierouproformat;
  function mergeArrays(...$arrays)
  {
  
@@ -168,11 +188,11 @@ div.c {
   <table style="width: 100%; margin-top: -40px; ">
   <tr style="background-color: gray;">
     <th>Date</th>
-    <th>No Proforma</th>
+    <th>'.$type.'</th>
   </tr>
   <tr>
     <td>'.$dataCreation.'</td>
-    <td>'.$numService.'</td>
+    <td>'.$dossierouproformat.'</td>
   </tr>
 </table>
    </div>

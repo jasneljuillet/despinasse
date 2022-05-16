@@ -4,6 +4,7 @@
 	 $client = $_POST['clientName'];
 
 	 $sql = "SELECT * FROM dossier WHERE Nom = '$client' ";
+	//  echo $sql;
 	$result = $connect->query($sql);
 
 	if ($result->num_rows > 0) {

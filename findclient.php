@@ -152,7 +152,7 @@ session_start();
                         
                                 <?php } ?>
                                 <div>
-                                <button type="submit" class="btn btn-primary " name=""><a target="_blank" href="./php_action/facturesans.php?id=<?php echo $clientId; ?>&dossierid=<?php echo $dossier; ?>" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
+                                <button type="submit" class="btn btn-primary " name=""><a target="_blank" href="./php_action/facturesans.php?id=<?php echo $clientId; ?>&dossierid=<?php echo $dossier; ?>&se=1" style="color: #fff;"><i class="glyphicon glyphicon-print"></i> Imprimer</a></button> 
                                 <button type="submit" class="btn btn-primary text-center" name="">Service(s): <?php echo mysqli_num_rows($results); ?></button>     <br><br>
                                 <hr>
                                 <form method="post" action="#">
