@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 08, 2022 at 05:27 PM
+-- Generation Time: May 16, 2022 at 05:44 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.0
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `phone` varchar(255) NOT NULL,
   `tel` varchar(255) NOT NULL,
   PRIMARY KEY (`numClient`)
-) ENGINE=InnoDB AUTO_INCREMENT=743 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=744 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `client`
@@ -102,7 +102,55 @@ INSERT INTO `client` (`numClient`, `nomClient`, `adresse`, `personne`, `phone`, 
 (719, 'BEAUDYNE Logistics', 'Nazon rue Celime 5', 'Martino Pierre', '2765443', '29908651'),
 (740, 'Santpon', '16 bis 2ieme Imp.Lavaud', 'Ilfodotte Valcourt', '39098765', '28789090'),
 (741, 'UNIBANK', '2,rue celimene Nzon', 'Marinez Lopez', '28909090', '34567890'),
-(742, 'FAES', '3, Delmas 75', 'Jenny Lia', '28789090', '22212345');
+(742, 'FAES', '3, Delmas 75', 'Jenny Lia', '28789090', '22212345'),
+(743, 'Despinasse', '3, rue celimene Nazon', 'Jolie Mama', '28909090', '34567890');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clientreference`
+--
+
+DROP TABLE IF EXISTS `clientreference`;
+CREATE TABLE IF NOT EXISTS `clientreference` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `no_reference` varchar(100) NOT NULL,
+  `client` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client` (`client`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `clientreference`
+--
+
+INSERT INTO `clientreference` (`id`, `no_reference`, `client`) VALUES
+(1, 'JJ-994', 742),
+(3, 'Bga-008', 742),
+(5, 'despinasse-09000', 743);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clienttransport`
+--
+
+DROP TABLE IF EXISTS `clienttransport`;
+CREATE TABLE IF NOT EXISTS `clienttransport` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `typeDossier` varchar(100) NOT NULL,
+  `client` int(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `client` (`client`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `clienttransport`
+--
+
+INSERT INTO `clienttransport` (`Id`, `typeDossier`, `client`) VALUES
+(2, 'Aerien', 742),
+(3, 'Aerien', 743);
 
 -- --------------------------------------------------------
 
@@ -152,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `dossier` (
   `clientId` int(11) DEFAULT NULL,
   PRIMARY KEY (`Num_Dossier`),
   KEY `FK_Client` (`clientId`)
-) ENGINE=InnoDB AUTO_INCREMENT=940 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=941 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dossier`
@@ -164,7 +212,8 @@ INSERT INTO `dossier` (`Num_Dossier`, `Nom`, `TypeDossier`, `Date_creation`, `De
 (929, 'UNIBANK', 'Local', '2022-06-02', 'Jacmel', 'Concentre', 12345, '', 719),
 (932, 'NATCOM', 'Local', '2022-03-27', 'Jacmel', 'Concentre', 12450, '', 719),
 (938, 'vamark', 'Local', '2022-04-04', 'Jeremie', 'Concentre', 12345, '', 719),
-(939, 'Jasnel', 'Local', '2022-05-07', 'Jasnel Juillet', 'Description des collis', 120, '45', 742);
+(939, 'Jasnel', 'Local', '2022-05-07', 'Jasnel Juillet', 'Description des collis', 120, '45', 742),
+(940, 'Despinasse', 'Export', '2022-05-16', 'Jeremie', 'Concentre', 12345, '', 743);
 
 -- --------------------------------------------------------
 
@@ -304,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `reference` (
   `dossier` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `dossier` (`dossier`)
-) ENGINE=MyISAM AUTO_INCREMENT=166 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=170 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reference`
@@ -313,8 +362,11 @@ CREATE TABLE IF NOT EXISTS `reference` (
 INSERT INTO `reference` (`id`, `no_reference`, `dossier`) VALUES
 (1, 'ajsn45', 939),
 (165, 'despinasse2022-2023-2024', 939),
+(168, 'despinasse-900', 940),
 (157, '7799', 939),
-(162, 'des001', 939);
+(162, 'des001', 939),
+(166, '7y', 929),
+(167, '7y', 929);
 
 -- --------------------------------------------------------
 
@@ -333,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `service` (
   PRIMARY KEY (`id`),
   KEY `FK_clint` (`client`),
   KEY `FK_Dossier` (`dossier`)
-) ENGINE=InnoDB AUTO_INCREMENT=1160 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1170 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `service`
@@ -354,11 +406,8 @@ INSERT INTO `service` (`id`, `nom`, `prix`, `quantite`, `client`, `dossier`) VAL
 (940, 'Tranport', 12, 2, 740, NULL),
 (947, 'Tranport', 120, 1, 719, 938),
 (948, 'Shipping', 150, 2, 719, 938),
-(952, 'Tranport', 22, 2, 741, NULL),
-(957, 'Shipping', 22, 1, 741, NULL),
 (960, 'Shipping', 22, 1, 741, NULL),
 (965, 'Shipping', 22, 1, 741, NULL),
-(968, 'Shipping', 22, 1, 741, NULL),
 (969, 'Shipping', 22, 1, 741, NULL),
 (970, 'Shipping', 22, 1, 741, NULL),
 (971, 'Shipping', 22, 1, 741, NULL),
@@ -370,7 +419,6 @@ INSERT INTO `service` (`id`, `nom`, `prix`, `quantite`, `client`, `dossier`) VAL
 (977, 'Shipping', 22, 1, 741, NULL),
 (978, 'Shipping', 22, 1, 741, NULL),
 (979, 'Shipping', 22, 1, 741, NULL),
-(980, 'Shipping', 22, 1, 741, NULL),
 (981, 'Shipping', 22, 1, 741, NULL),
 (982, 'Shipping', 22, 1, 741, NULL),
 (983, 'Shipping', 22, 1, 741, NULL),
@@ -480,7 +528,6 @@ INSERT INTO `service` (`id`, `nom`, `prix`, `quantite`, `client`, `dossier`) VAL
 (1099, 'Shipping', 22, 1, 741, NULL),
 (1100, 'Shipping', 22, 1, 741, NULL),
 (1101, 'Shipping', 22, 1, 741, NULL),
-(1102, 'Shipping', 22, 1, 741, NULL),
 (1103, 'Shipping', 22, 1, 741, NULL),
 (1104, 'Shipping', 22, 1, 741, NULL),
 (1105, 'Shipping', 22, 1, 741, NULL),
@@ -515,8 +562,17 @@ INSERT INTO `service` (`id`, `nom`, `prix`, `quantite`, `client`, `dossier`) VAL
 (1153, 'Shipping', 67, 6, 742, NULL),
 (1156, 'Tranport', 45, 2, 719, NULL),
 (1157, 'Livraison', 77, 2, 740, NULL),
-(1158, 'Transport', 45, 3, 742, 939),
-(1159, 'Transport', 45, 3, 742, 939);
+(1159, 'Transport', 45, 3, 742, 939),
+(1160, 'Shipping', 77, 10, 742, 939),
+(1161, 'Shipping', 100, 1, 742, 939),
+(1162, 'Shipping', 100, 1, 743, NULL),
+(1163, 'Transport', 200, 1, 743, NULL),
+(1164, 'Livraison', 90, 2, 743, NULL),
+(1165, 'Transport', 200, 1, 743, 940),
+(1166, 'Transport', 100, 1, 743, 940),
+(1167, 'Livraison', 200, 2, 743, 940),
+(1168, 'Shipping', 50, 1, 743, 940),
+(1169, 'Transport', 30, 2, 743, 940);
 
 -- --------------------------------------------------------
 
@@ -558,14 +614,17 @@ CREATE TABLE IF NOT EXISTS `transport` (
   `dossier` int(11) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `FK_Transport` (`dossier`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transport`
 --
 
 INSERT INTO `transport` (`Id`, `typedossier`, `dossier`) VALUES
-(1, 'Maritime', 939);
+(1, 'Maritime', 939),
+(20, 'Maritime', 938),
+(21, 'Maritime', 929),
+(22, 'Maritime', 940);
 
 -- --------------------------------------------------------
 
@@ -597,6 +656,12 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `status`) VALUES
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `clientreference`
+--
+ALTER TABLE `clientreference`
+  ADD CONSTRAINT `clientreference_ibfk_1` FOREIGN KEY (`client`) REFERENCES `client` (`numClient`);
 
 --
 -- Constraints for table `dossier`

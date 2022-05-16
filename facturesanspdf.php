@@ -198,6 +198,102 @@ session_start();
                             </form>
 
                             </div> <br>
+
+                            <form method="post" action="#">
+                                <div class="form-group">
+															<label for="folderName" class="col-sm-3 control-label">References</label>
+														<div class="col-sm-9">
+															<input type="text" class="form-control" name="reference" id="nameFolder" placeholder="Reference" autocomplete="off" required>
+														</div>
+
+                            <button type="submit" class="btn btn-primary text-center" name="ref">Ajouter</button>
+												</div>
+
+                        <div class="panel">
+         <div class="panel-body">
+			    <div class="remove-msg-client"></div>
+			    	<table class="table table-bordered table-striped">
+			    		
+			    			<thead>
+			    				<tr>
+                    <th>Reference</th>
+                    <th>Action</th>
+			    				</tr>
+			    			</thead>
+                        <?php
+                        $dos = $_GET['clientName'];
+
+                        $req = "SELECT * FROM clientreference WHERE client = '$dos' ";
+                        $results = $connect->query($req); ?>
+
+                        
+                        <?php if($results->num_rows > 0){ ?>
+                          <?php
+                            foreach($results as $data){ ?>
+                            <tr>
+                                <td><?= $data['no_reference']?></td>   
+                                <td> <a href="facturesanspdf.php?clientName=<?php echo $dos ?>&ideref=<?php echo $data['id'] ?>">Supprimer</a> </td>
+                          </tr>
+                          <!--  -->
+                           <?php }}
+
+                           ?>
+                                
+                        
+                       
+                <tbody>
+                <?php 
+                
+                  if(isset($_GET['ideref'])) {
+                    $del = $_GET['ideref'];
+
+                    $del = "DELETE FROM clientreference WHERE id = '$del' ";
+                    $rr = $connect->query($del);
+                    echo "<script>
+                    window.onload = function() {
+                      if(!window.location.hash) {
+                        window.location = window.location + '#loaded';
+		                    window.location.reload();
+                      }
+                    }
+                    </script>";
+                  }
+
+                  ?>
+                </tbody>
+			    	</table>
+
+			  </div>
+			</div>
+
+      <?php 
+
+if(isset($_POST['ref'])) {
+ $ref = $_POST['reference'];
+ $client = $_GET['clientName'];
+ 
+ $sql ="INSERT INTO clientreference (no_reference, client) VALUES('$ref', '$client')";
+  if($connect->query($sql)==TRUE) {
+    echo "<script>
+            window.onload = function() {
+              if(!window.location.hash) {
+                window.location = window.location + '#loaded';
+                window.location.reload();
+              }
+            }
+            </script>";
+  } else {
+    echo"<div class='alert alert-danger' role='alert'>
+      Echec
+  </div>";
+  }
+}
+
+
+?>
+
+                        </form>
+
                              <?php  } ?>	
 											
                 </tbody>
@@ -297,7 +393,7 @@ session_start();
                   if(isset($_GET['ideref'])) {
                     $del = $_GET['ideref'];
 
-                    $del = "DELETE FROM reference WHERE id = '$del' ";
+                    $del = "DELETE FROM clientreference WHERE id = '$del' ";
                     $rr = $connect->query($del);
                     echo "<script>
                     window.onload = function() {

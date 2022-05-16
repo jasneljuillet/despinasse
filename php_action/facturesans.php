@@ -30,6 +30,7 @@ $dossierouproformat = "";
 
 $referene = [];
 $req = "";
+$sql4 = "";
 
 if(isset($check)) {
   $sql = "SELECT * FROM dossier INNER JOIN client on dossier.clientId = client.numClient INNER JOIN service on dossier.num_Dossier = service.dossier where dossier.clientId = '$client' ";
@@ -42,11 +43,13 @@ if(isset($check)) {
 
 $sql2 = "SELECT * FROM transport WHERE dossier = '$dossier' ";
 $sql3 = "SELECT * FROM reference WHERE dossier = '$dossier' ";
-
+$sql4 = "SELECT * FROM clientreference WHERE client = '$client' ";
 
 $result = $connect->query($sql);
 $result2 = $connect->query($sql2);
 $result3 = $connect->query($sql3);
+$result4 = $connect->query($sql4);
+
 
 if($result2 -> num_rows > 0) {
   while($row = $result2->fetch_assoc()) {
@@ -57,6 +60,14 @@ if($result2 -> num_rows > 0) {
 if($result3 -> num_rows > 0) {
   while($row = $result3->fetch_assoc()) {
     $referene[] = $row['no_reference'];
+  }
+}
+
+if($result4 -> num_rows > 0) {
+  if(empty($referene)) {
+    while($row = $result4 -> fetch_assoc()) {
+      $referene[] = $row['no_reference'];
+    }
   }
 }
 
@@ -72,6 +83,7 @@ if ($result->num_rows > 0) {
         if(empty($typeDossier)) {
           $typeDossier = $row['typeDossier'];
         }
+
         $dataCreation = date("Y/m/d");
         $serviceName[] = $row['nom'];
         $quantite[] = $row['quantite'];
